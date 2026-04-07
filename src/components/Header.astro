@@ -1,0 +1,265 @@
+---
+import { Image } from "astro:assets";
+import logoEmpresa from "../assets/logo-binding.webp";
+---
+
+<header class="main-header">
+    <div class="container">
+        <a href="/" class="logo">
+            <Image
+                src={logoEmpresa}
+                alt="Logo Binding Software"
+                width={720}
+                quality="max"
+                style={{ width: "180px", height: "auto" }}
+            />
+        </a>
+
+        <button
+            id="menu-toggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="nav-menu"
+            aria-expanded="false"
+        >
+            <span class="bar"></span><span class="bar"></span><span class="bar"
+            ></span>
+        </button>
+
+        <nav id="nav-menu" aria-label="Menú principal">
+            <!-- LISTA PRINCIPAL -->
+            <ul class="nav-list">
+                <li><a href="/">Inicio</a></li>
+
+                <li class="dropdown">
+                    <button class="dropdown-toggle"
+                        >Servicios <span class="arrow">▼</span></button
+                    >
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/servicios/identity">Binding Identity</a>
+                        </li>
+                        <li>
+                            <a href="/servicios/platform"
+                                >Technological platform</a
+                            >
+                        </li>
+                        <li>
+                            <a href="/servicios/consulting"
+                                >Binding Consulting</a
+                            >
+                        </li>
+                        <li>
+                            <a href="/servicios/training">Binding Training</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li><a href="/idi">I+D+i</a></li>
+                <li><a href="/porque-binding">Por qué Binding</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+
+                <!-- BOTÓN IDIOMA -->
+                <li class="lang-switcher">
+                    <a href="/en" class="lang-btn">EN</a>
+                    <span class="separator">|</span>
+                    <a href="/" class="lang-btn active">ES</a>
+                </li>
+
+                <li><a href="/login" class="btn-login">Log in</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<style>
+    .main-header {
+        background-color: var(--color-base-1);
+        color: var(--color-base-2);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+        border-bottom: 1px solid rgba(63, 66, 56, 0.12);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.5rem;
+        min-height: 80px;
+    }
+
+    /* Reset de listas para que no salgan los puntos de la imagen */
+    .nav-list,
+    .dropdown-menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .nav-list a,
+    .dropdown-toggle {
+        color: var(--color-base-2);
+        text-decoration: none;
+        font-size: 0.95rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition:
+            color 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+    .nav-list a:hover,
+    .dropdown-toggle:hover,
+    .lang-btn:hover {
+        color: var(--color-contraste-1);
+        opacity: 1;
+    }
+
+    /* Estilos del Dropdown */
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(63, 66, 56, 0.98);
+        flex-direction: column;
+        gap: 0;
+        min-width: 220px;
+        border-radius: 4px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(224, 225, 221, 0.08);
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: flex;
+    }
+
+    .dropdown-menu a {
+        padding: 11px 18px;
+        display: block;
+        width: 100%;
+        color: var(--color-base-1);
+    }
+
+    .dropdown-menu a:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Selector de Idioma */
+    .lang-switcher {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.85rem;
+        margin-left: 10px;
+    }
+    .lang-btn {
+        opacity: 0.7;
+        color: var(--color-base-2);
+    }
+    .lang-btn.active {
+        opacity: 1;
+        font-weight: 700;
+    }
+    .separator {
+        color: var(--color-base-2);
+        opacity: 0.3;
+    }
+
+    .btn-login {
+        background: var(--color-contraste-2);
+        color: var(--color-base-1);
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        transition:
+            background 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .btn-login:hover {
+        background: var(--color-enfasis);
+        transform: translateY(-1px);
+    }
+
+    .bar {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--color-base-2);
+        margin: 4px 0;
+        border-radius: 2px;
+    }
+
+    #menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+
+    /* Mobile */
+    @media (max-width: 950px) {
+        #menu-toggle {
+            display: block;
+        }
+        .container {
+            padding: 0 1rem;
+        }
+        .nav-list {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            flex-direction: column;
+            background: var(--color-base-1);
+            padding: 20px 1rem 24px;
+            gap: 1rem;
+        }
+        #nav-menu.is-active .nav-list {
+            display: flex;
+        }
+        .nav-list li {
+            width: 100%;
+        }
+        .nav-list a,
+        .dropdown-toggle {
+            width: 100%;
+            text-align: left;
+        }
+        .dropdown-menu {
+            position: static;
+            display: flex;
+            background: transparent;
+            padding-left: 1rem;
+        }
+        .dropdown-menu a {
+            color: var(--color-base-2);
+            padding: 10px 0;
+        }
+    }
+</style>
+
+<script>
+    const btn = document.getElementById("menu-toggle");
+    const menu = document.getElementById("nav-menu");
+    btn?.addEventListener("click", () => {
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!expanded));
+        menu?.classList.toggle("is-active");
+    });
+</script>

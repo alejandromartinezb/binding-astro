@@ -1,0 +1,57 @@
+---
+// src/components/home/Hero.astro
+---
+
+<section class="hero">
+  <div class="content">
+    <p class="quote">
+      "Sólo es posible avanzar cuando se mira lejos. Solo cabe progresar cuando
+      se piensa en grande."
+    </p>
+    <span class="author">— JOSÉ ORTEGA Y GASSET</span>
+    <h1>Avanzamos contigo en la transformación digital</h1>
+    <div class="actions">
+      <a href="#contacto" class="btn-primary">Saber más</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135px, #0f172a 0%, #1e293b 100%);
+    color: white;
+    padding: 6rem 1.5rem;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+  }
+  .author {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: #64748b;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-weight: 800;
+  }
+  .btn-primary {
+    background: #3b82f6;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+</style>

@@ -1,0 +1,215 @@
+---
+import { Image } from "astro:assets";
+import logoEmpresa from "../assets/logo-binding.webp";
+import certificacionLegitec from "../assets/certification.legitec.webp";
+import awsLogo from "../assets/powered-by-aws.png";
+// src/components/Footer.astro
+---
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <a href="https://bindingsoftware.com/es/" target="_blank" rel="noopener" class="footer-logo-link">
+                <Image
+                    src={logoEmpresa}
+                    alt="Logo Binding Software"
+                    width={240}
+                    quality="max"
+                    style={{ width: "180px", height: "auto" }}
+                />
+            </a>
+            <div class="footer-brand-images">
+                <Image
+                    src={awsLogo}
+                    alt="Powered by AWS"
+                    width={140}
+                    quality="max"
+                    style={{ width: "120px", height: "auto" }}
+                />
+                <Image
+                    src={certificacionLegitec}
+                    alt="Sello de Excelencia Legitec"
+                    width={120}
+                    quality="max"
+                    style={{ width: "100px", height: "auto" }}
+                />
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h5>Enlaces rápidos</h5>
+            <ul class="footer-list">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/solutions/identity">Binding Identity</a></li>
+                <li><a href="/solutions/phone">Binding Phone</a></li>
+                <li><a href="/partners">Partners</a></li>
+                <li><a href="/training">Training</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h5>Contacto</h5>
+            <ul class="footer-list">
+                <li><a href="mailto:sales@bindingsoftware.com">sales@bindingsoftware.com</a></li>
+                <li>El Salvador 10, Molina de Segura</li>
+                <li><a href="/contacto">Contactar</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h5>Redes sociales</h5>
+            <ul class="footer-list">
+                <li><a href="https://www.linkedin.com/company/binding-software/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Binding Software. All rights reserved.</p>
+        <div class="footer-legal">
+            <a href="/legal">Aviso Legal</a>
+            <a href="/cookies">Cookies</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .main-footer {
+        background: var(--color-base-1);
+        color: var(--color-base-2);
+        padding: 2.5rem 1rem 1.5rem;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        border-bottom: 1px solid rgba(63, 66, 56, 0.12);
+        padding-bottom: 1.5rem;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-logo-link {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .footer-brand-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .footer-brand-images img {
+        display: block;
+        max-height: 56px;
+        object-fit: contain;
+    }
+
+    .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-column h5 {
+        margin: 0;
+        font-size: 0.95rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-base-2);
+    }
+
+    .footer-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .footer-list li {
+        font-size: 0.95rem;
+        color: rgba(63, 66, 56, 0.9);
+    }
+
+    .footer-list a {
+        color: var(--color-base-2);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .footer-list a:hover {
+        color: var(--color-contraste-2);
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+    }
+
+    .footer-bottom p {
+        margin: 0;
+        color: rgba(63, 66, 56, 0.7);
+        font-size: 0.9rem;
+    }
+
+    .footer-legal {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .footer-legal a {
+        color: rgba(63, 66, 56, 0.75);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .footer-legal a:hover {
+        color: var(--color-contraste-2);
+    }
+
+    @media (min-width: 768px) {
+        .footer-container {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            flex: 1 1 25%;
+        }
+
+        .footer-column {
+            flex: 1 1 18%;
+        }
+
+        .footer-bottom {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .footer-legal {
+            flex-direction: row;
+            gap: 1rem;
+        }
+    }
+
+</style>

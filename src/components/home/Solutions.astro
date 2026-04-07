@@ -1,0 +1,113 @@
+---
+// src/components/home/Solutions.astro
+
+// En JavaScript no hace falta definir "interfaces".
+// Simplemente creamos la lista de objetos directamente.
+const solutions = [
+  {
+    id: "identity",
+    title: "Identidad Digital",
+    text: "Soluciones seguras para la gestión de identidades y accesos.",
+  },
+  {
+    id: "phone",
+    title: "Telefonía IP",
+    text: "Sistemas de comunicación modernos y escalables para tu empresa.",
+  },
+  {
+    id: "consulting",
+    title: "Consultoría IT",
+    text: "Asesoramiento experto para optimizar tu infraestructura tecnológica.",
+  },
+];
+---
+
+<section class="solutions">
+  <h2>Nuestras Soluciones</h2>
+  <div class="grid">
+    {
+      solutions.map((s) => (
+        <div class="card">
+          {/* Generamos la clase del icono usando el ID del objeto */}
+          <div class={`icon icon-${s.id}`} />
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+          <a href={`/soluciones/${s.id}`}>Ver detalles →</a>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* Mobile-First: Estilos base para móviles */
+  .solutions {
+    padding: 3rem 1.5rem;
+    background: #ffffff;
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: #1e293b;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    text-align: left;
+    background: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  /* Colores de los iconos */
+  .icon-identity {
+    background: #3b82f6;
+  }
+  .icon-phone {
+    background: #10b981;
+  }
+  .icon-consulting {
+    background: #6366f1;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    color: #0f172a;
+    font-size: 1.3rem;
+  }
+  p {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+  }
+  a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Escritorio: Cuando la pantalla mide más de 768px */
+  @media (min-width: 768px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  }
+</style>

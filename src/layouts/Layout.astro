@@ -1,0 +1,45 @@
+---
+import '../styles/variables.css';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "Binding Software" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+
+		<main>
+			<!-- En <slot /> se inyectará el contenido de cada página -->
+			<slot />
+		</main>
+
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		min-height: 100%; /* Para evitar que el footer flote */
+		display: flex;
+		flex-direction: column;
+		font-family: system-ui, sans-serif; /* TODO: Cambiar la fuente */
+	}
+
+	main {
+		flex: 1; /* Empuja el footer al final */
+	}
+</style>
