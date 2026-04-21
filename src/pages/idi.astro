@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Binding Software | I+D+i">
+    <section class="page-section">
+        <div class="page-content">
+            <p class="eyebrow">I+D+i</p>
+            <h1>BIT: verificación documental ágil y segura</h1>
+            <p>
+                “BIT” es la tecnología innovadora de verificación documental desarrollada por Binding Software para la lectura,
+                autenticación y validación de documentos de identidad en menos de 20 segundos.
+            </p>
+            <p>
+                Integra de forma nativa la captura de Electronic ID, MiDNI y documentos oficiales de cualquier país,
+                aplicando procesos automáticos de extracción segura y verificación estructural de datos.
+            </p>
+            <p>
+                Esta tecnología unifica en un solo sistema la lectura multisector, la validación de origen y la entrega de datos
+                fiables al PMS del hotel, garantizando máxima precisión, reducción de tiempos operativos y una experiencia de
+                check-in radicalmente más ágil.
+            </p>
+            <div class="feature-grid">
+                <div>
+                    <h2>Lectura global</h2>
+                    <p>Soporte para documentos de identidad y pasaportes de cualquier país, junto a Electronic ID y MiDNI.</p>
+                </div>
+                <div>
+                    <h2>Check-in en 20s</h2>
+                    <p>Procesos de verificación rápida que aceleran el check-in y reducen errores manuales.</p>
+                </div>
+                <div>
+                    <h2>Extracción segura</h2>
+                    <p>Captura automática y fiable de datos estructurados con validación documental integrada.</p>
+                </div>
+                <div>
+                    <h2>Integración PMS</h2>
+                    <p>Entrega de información verificada directamente al PMS del hotel para una operación fluida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .page-content {
+        max-width: 960px;
+        margin: 0 auto;
+        color: var(--color-base-2);
+    }
+
+    .eyebrow {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: var(--color-enfasis);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.85rem;
+    }
+
+    h1 {
+        margin: 0 0 1.5rem;
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        line-height: 1.05;
+        color: var(--color-contraste-1);
+    }
+
+    p {
+        font-size: 1.05rem;
+        line-height: 1.75;
+        margin: 0 0 1.25rem;
+    }
+
+    .feature-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 2.5rem;
+    }
+
+    .feature-grid h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.15rem;
+        color: var(--color-contraste-2);
+    }
+
+    .feature-grid p {
+        margin: 0;
+        color: var(--color-base-2);
+    }
+</style>
