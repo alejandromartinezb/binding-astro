@@ -1,0 +1,38 @@
+---
+// 1. Importas el Layout de tu carpeta layouts
+import Layout from "../layouts/Layout.astro";
+
+// 2. Importas el componente del juego que acabamos de crear
+import InteractiveBinding from "../components/InteractiveBinding.astro";
+---
+
+<Layout title="¿Por qué Binding? | Juego Interactivo">
+    <main>
+        <section class="intro">
+            <h1>Personaliza tu hotel con Binding</h1>
+            <p>
+                Añade elementos para ver cómo mejora la puntuación de tu
+                estancia.
+            </p>
+        </section>
+
+        <!-- 3. Usas el componente aquí -->
+        <InteractiveBinding />
+    </main>
+</Layout>
+
+<style>
+    main {
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    h1 {
+        color: #4f46e5;
+        font-size: 2.5rem;
+    }
+    .intro {
+        margin-bottom: 3rem;
+    }
+</style>
