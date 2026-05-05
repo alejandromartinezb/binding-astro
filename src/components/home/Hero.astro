@@ -3,98 +3,88 @@
 ---
 
 <section class="hero">
-  <div class="content">
-    <p class="quote">
-      "Sólo es posible avanzar cuando se mira lejos. Solo cabe progresar cuando
-      se piensa en grande."
-    </p>
-    <span class="author">— JOSÉ ORTEGA Y GASSET</span>
-    <h1>Avanzamos contigo en la transformación digital</h1>
-    <div class="actions">
-      <a href="#contacto" class="btn-primary">Saber más</a>
-      <a href="/idi" class="btn-secondary">I+D+i</a>
+    <div class="content">
+        <span class="eyebrow">BINDING IDENTITY PARA HOTELES</span>
+        <h1>Check-in en <br /> <span>20 segundos</span></h1>
+        <p class="description">
+            Binding Identity Technology hecho por hoteleros para hoteleros
+        </p>
+        <div class="actions">
+            <a href="#contacto" class="btn-outline">Contáctanos</a>
+        </div>
     </div>
-  </div>
 </section>
 
 <style>
-  .hero {
-    background: linear-gradient(135px, #0f172a 0%, #1e293b 100%);
-    color: white;
-    padding: 6rem 1.5rem;
-    text-align: center;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .quote {
-    font-style: italic;
-    font-size: 1.2rem;
-    color: #94a3b8;
-    margin-bottom: 0.5rem;
-  }
-  .author {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    color: #64748b;
-    display: block;
-    margin-bottom: 2rem;
-  }
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    font-weight: 800;
-  }
-  .actions {
-    display: inline-flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .btn-primary {
-    background: #3b82f6;
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    font-weight: bold;
-  }
-  .quote {
-    font-style: italic;
-    font-size: 1.2rem;
-    color: #94a3b8;
-    margin-bottom: 0.5rem;
-  }
-  .author {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    color: #64748b;
-    display: block;
-    margin-bottom: 2rem;
-  }
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    font-weight: 800;
-  }
-  .btn-primary {
-    background: #3b82f6;
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-  }
+    .hero {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 6rem 1.5rem;
+        text-align: center;
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .eyebrow {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        color: #64748b;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    h1 {
+        font-size: 4rem;
+        line-height: 1;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    h1 span {
+        color: var(--color-contraste-2);
+    }
+
+    .description {
+        font-size: 1.25rem;
+        color: #475569;
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: #0f172a;
+        padding: 0.8rem 2.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        border: 2px solid #0f172a;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+        background: #0f172a;
+        color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.8rem;
+        }
+        .hero {
+            min-height: 60vh;
+        }
+    }
 </style>

@@ -1,0 +1,112 @@
+---
+// src/components/home/HowItWorks.astro
+---
+
+<section class="how-it-works">
+    <div class="container">
+        <span class="eyebrow">CÓMO FUNCIONA</span>
+        <h2>
+            Un flujo de check-in más rápido desde la llegada hasta la
+            integración con el hotel
+        </h2>
+        <p class="description">
+            Binding Identity reduce pasos manuales y conecta verificación
+            documental, firma y sistemas del hotel para que la recepción opere
+            con más agilidad.
+        </p>
+
+        <div class="steps-preview">
+            <div class="step">
+                <div class="number">01</div>
+                <p>Verificación Documental</p>
+            </div>
+            <div class="connector"></div>
+            <div class="step">
+                <div class="number">02</div>
+                <p>Firma Digital</p>
+            </div>
+            <div class="connector"></div>
+            <div class="step">
+                <div class="number">03</div>
+                <p>Integración PMS</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .how-it-works {
+        padding: 5rem 1.5rem;
+        background: #f1f5f9;
+        text-align: center;
+    }
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .eyebrow {
+        color: #3b82f6;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 1rem;
+    }
+    h2 {
+        font-size: 2.2rem;
+        color: #0f172a;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+    .description {
+        font-size: 1.2rem;
+        color: #475569;
+        line-height: 1.6;
+        margin-bottom: 3rem;
+    }
+
+    /* Visual de pasos */
+    .steps-preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    .step {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        flex: 1;
+    }
+    .number {
+        font-weight: 800;
+        color: #3b82f6;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .step p {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #1e293b;
+    }
+    .connector {
+        width: 30px;
+        height: 2px;
+        background: #cbd5e1;
+    }
+
+    @media (max-width: 768px) {
+        .steps-preview {
+            flex-direction: column;
+        }
+        .connector {
+            width: 2px;
+            height: 20px;
+        }
+        h2 {
+            font-size: 1.8rem;
+        }
+    }
+</style>

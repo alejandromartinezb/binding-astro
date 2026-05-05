@@ -1,0 +1,131 @@
+---
+import InteractiveBinding from "../InteractiveBinding.astro";
+
+const pasosConfigurador = [
+    {
+        categoria: "Lectura",
+        descripcion: "¿Cómo capturas los datos del DNI/Pasaporte?",
+        opciones: [
+            {
+                titulo: "Manual",
+                descripcion:
+                    "Entrada manual por el personal del hotel. Mayor retraso y riesgo de error.",
+                pts: 15,
+                icon: "⌨️",
+                color: "from-gray-400 to-gray-500",
+            },
+            {
+                titulo: "Escáner",
+                descripcion:
+                    "Escaneo de documento físico. Cuidado con GDPR y protección de datos.",
+                pts: 35,
+                icon: "🖨️",
+                color: "from-orange-400 to-red-500",
+            },
+            {
+                titulo: "OCR",
+                descripcion:
+                    "Reconocimiento óptico de caracteres para automatizar la lectura.",
+                pts: 65,
+                icon: "📸",
+                color: "from-blue-400 to-blue-500",
+            },
+            {
+                titulo: "Electrónica",
+                descripcion:
+                    "Firma digital / datos directos si cumple LPR y normas de protección.",
+                pts: 100,
+                icon: "⚡",
+                color: "from-indigo-500 to-purple-600",
+            },
+        ],
+    },
+    {
+        categoria: "Verificación",
+        descripcion:
+            "¿Quién confirma la identidad del huésped y cómo se valida?",
+        opciones: [
+            {
+                titulo: "Manual por trabajador",
+                descripcion:
+                    "El equipo revisa visualmente la documentación del cliente.",
+                pts: 20,
+                icon: "👤",
+                color: "from-gray-500 to-gray-700",
+            },
+            {
+                titulo: "Sistema automático Binding",
+                descripcion:
+                    "Validación automática de identidad con tecnología Binding.",
+                pts: 100,
+                icon: "🤖",
+                color: "from-indigo-500 to-purple-600",
+            },
+        ],
+    },
+    {
+        categoria: "Digitalización",
+        descripcion:
+            "¿Cómo gestionas los documentos obligatorios y la bienvenida?",
+        opciones: [
+            {
+                titulo: "Físico",
+                descripcion:
+                    "Documentos en papel: registro de viajeros y hoja de bienvenida.",
+                pts: 10,
+                icon: "📂",
+                color: "from-red-400 to-pink-500",
+            },
+            {
+                titulo: "Paperless",
+                descripcion:
+                    "Documentos digitales sin papel, menos espacio y menos errores.",
+                pts: 65,
+                icon: "📱",
+                color: "from-amber-400 to-orange-500",
+            },
+            {
+                titulo: "Electrónica con firma",
+                descripcion:
+                    "Documentos firmados electrónicamente con validez legal.",
+                pts: 100,
+                icon: "✍️",
+                color: "from-indigo-500 to-purple-600",
+            },
+        ],
+    },
+    {
+        categoria: "Legalidad",
+        descripcion:
+            "¿Cumples la ley o tomas algún riesgo en tus procesos?",
+        opciones: [
+            {
+                titulo: "Cumplo mínimo",
+                descripcion:
+                    "Cumplimiento parcial con más riesgo de sanciones y multas.",
+                pts: 35,
+                icon: "⚠️",
+                color: "from-orange-400 to-red-500",
+            },
+            {
+                titulo: "Riesgo controlado",
+                descripcion:
+                    "Gestión mixta con controles, pero aún expuesto a fallos.",
+                pts: 65,
+                icon: "🛡️",
+                color: "from-amber-400 to-orange-500",
+            },
+            {
+                titulo: "Cumplimiento total",
+                descripcion:
+                    "Procedimientos ajustados a la ley y al reglamento de datos.",
+                pts: 100,
+                icon: "⚖️",
+                color: "from-indigo-500 to-purple-600",
+            },
+        ],
+    },
+];
+---
+
+<InteractiveBinding pasos={pasosConfigurador} />
