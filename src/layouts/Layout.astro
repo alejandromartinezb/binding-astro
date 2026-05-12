@@ -3,6 +3,8 @@ import "../styles/variables.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
+// El layout general de la web es el mismo para todas las páginas.
+// Incluye el header, el footer y un slot donde se renderiza el contenido.
 const { title = "Binding Software" } = Astro.props;
 ---
 
@@ -28,7 +30,7 @@ const { title = "Binding Software" } = Astro.props;
 		<Header />
 
 		<main>
-			<!-- En <slot /> se inyectará el contenido de cada página -->
+			<!-- Aquí va el contenido específico de cada página -->
 			<slot />
 		</main>
 

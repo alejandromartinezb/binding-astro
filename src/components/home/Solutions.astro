@@ -1,113 +1,263 @@
 ---
 // src/components/home/Solutions.astro
+// Este componente muestra todas las soluciones/características que ofrece Binding
 
-// En JavaScript no hace falta definir "interfaces".
-// Simplemente creamos la lista de objetos directamente.
+// Array con la lista de soluciones de la empresa
+// Cada solución tiene: id (para la clase CSS), title (título), text (descripción)
 const solutions = [
   {
-    id: "identity",
-    title: "Identidad Digital",
-    text: "Soluciones seguras para la gestión de identidades y accesos.",
+    id: "checkin",
+    title: "Check-in personalizado",
+    text: "Experiencias de llegada adaptadas a cada huésped y canal.",
   },
   {
-    id: "phone",
-    title: "Telefonía IP",
-    text: "Sistemas de comunicación modernos y escalables para tu empresa.",
+    id: "paperless",
+    title: "Registro sin papel",
+    text: "Digitaliza el proceso de registro para mayor rapidez y seguridad.",
   },
   {
-    id: "consulting",
-    title: "Consultoría IT",
-    text: "Asesoramiento experto para optimizar tu infraestructura tecnológica.",
+    id: "imagen-corporativa",
+    title: "Imagen corporativa",
+    text: "Personaliza tu interfaz con la identidad visual de tu hotel.",
+  },
+  {
+    id: "textos-legales",
+    title: "Textos legales personalizables",
+    text: "Gestiona avisos y condiciones adaptados a tu negocio.",
+  },
+  {
+    id: "analitica",
+    title: "Analítica de datos",
+    text: "Obtén métricas clave para mejorar la experiencia del huésped.",
+  },
+  {
+    id: "actualizaciones",
+    title: "Actualizaciones de producto",
+    text: "Recibe mejoras continuas que mantienen tu operación al día.",
+  },
+  {
+    id: "pms",
+    title: "Integraciones PMS",
+    text: "Conecta tu solución con sistemas de gestión hotelera.",
+  },
+  {
+    id: "campos-personalizados",
+    title: "Campos personalizados",
+    text: "Define datos extra para adaptarte a procesos específicos.",
+  },
+  {
+    id: "precheck",
+    title: "Precheck online",
+    text: "Reduce tiempos en recepción con el registro previo del huésped.",
+  },
+  {
+    id: "autoridades",
+    title: "Informes a autoridades",
+    text: "Genera reportes por reserva y viajero para cumplimiento legal.",
+  },
+  {
+    id: "corporate-manager",
+    title: "Corporate Manager",
+    text: "Control centralizado para cadenas y cuentas corporativas.",
+  },
+  {
+    id: "api",
+    title: "API para integradores",
+    text: "Conecta con tus sistemas externos de forma segura y flexible.",
+  },
+  {
+    id: "identity-point",
+    title: "Binding Identity Point",
+    text: "Punto único de identidad para toda la operación del cliente.",
   },
 ];
 ---
 
+<!-- Sección principal de soluciones -->
 <section class="solutions">
-  <h2>Nuestras Soluciones</h2>
+  <!-- Encabezado con título y descripción -->
+  <div class="header">
+    <!-- Pequeño texto superior en mayúsculas (eyebrow) -->
+    <p class="eyebrow">Soluciones</p>
+    <!-- Título principal -->
+    <h2>Lo que ofrece Binding</h2>
+    <!-- Descripción corta de qué hace esta sección -->
+    <p class="subtitle">Todas las herramientas para automatizar el check-in, gestionar datos y cumplir con tus operaciones hoteleras.</p>
+  </div>
+
+  <!-- Grid donde van todas las tarjetas de soluciones -->
   <div class="grid">
+    <!-- Recorremos el array de solutions y creamos una tarjeta para cada una -->
     {
-      solutions.map((s) => (
-        <div class="card">
-          {/* Generamos la clase del icono usando el ID del objeto */}
-          <div class={`icon icon-${s.id}`} />
-          <h3>{s.title}</h3>
-          <p>{s.text}</p>
-          <a href={`/soluciones/${s.id}`}>Ver detalles →</a>
-        </div>
+      solutions.map((solution) => (
+        <article class="card">
+          <!-- Cabecera de la tarjeta: icono + título -->
+          <div class="card-head">
+            <!-- Icono con color diferente según el tipo de solución -->
+            <!-- Usamos la clase "icon-{id}" para pintar cada icono de un color -->
+            <span class={`icon icon-${solution.id}`} aria-hidden="true" />
+            <!-- Título de la solución -->
+            <h3>{solution.title}</h3>
+          </div>
+          <!-- Descripción o texto de la solución -->
+          <p>{solution.text}</p>
+        </article>
       ))
     }
   </div>
 </section>
 
 <style>
-  /* Mobile-First: Estilos base para móviles */
+  /* CONTENEDOR PRINCIPAL */
+  /* Estilos generales de la sección */
   .solutions {
-    padding: 3rem 1.5rem;
-    background: #ffffff;
-    text-align: center;
-  }
-  h2 {
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    color: #1e293b;
+    padding: 5rem 1.5rem;
+    background: #f1f5f9;
+    color: #0f172a;
   }
 
+  /* ENCABEZADO (HEADER) */
+  /* Estilos del área de título y descripción */
+  .header {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  /* Texto pequeño en mayúsculas encima del título */
+  .eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #3b82f6;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  /* Título principal H2 */
+  h2 {
+    margin: 0;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    color: #0f172a;
+  }
+
+  /* Descripción o subtítulo debajo del H2 */
+  .subtitle {
+    margin: 1rem auto 0;
+    max-width: 640px;
+    color: #475569;
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+
+  /* GRID DE TARJETAS */
+  /* Contenedor grid para organizar las tarjetas en filas/columnas */
   .grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 1.5rem;
   }
 
+  /* TARJETA INDIVIDUAL */
+  /* Estilos de cada tarjeta de solución */
   .card {
     padding: 2rem;
-    border: 1px solid #e2e8f0;
     border-radius: 12px;
-    text-align: left;
-    background: #fff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.08);
   }
 
-  .icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 8px;
+  /* Cabecera de la tarjeta: icono + título en fila */
+  .card-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
     margin-bottom: 1rem;
   }
-  /* Colores de los iconos */
-  .icon-identity {
-    background: #3b82f6;
-  }
-  .icon-phone {
-    background: #10b981;
-  }
-  .icon-consulting {
-    background: #6366f1;
+
+  /* ICONOS */
+  /* Estilo base para todos los iconos */
+  .icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 14px;
+    flex-shrink: 0;
   }
 
+  /* Colores individuales de cada icono (gradientes) */
+  .icon-checkin {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+  }
+  .icon-paperless {
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+  }
+  .icon-imagen-corporativa {
+    background: linear-gradient(135deg, #ec4899, #f472b6);
+  }
+  .icon-textos-legales {
+    background: linear-gradient(135deg, #f97316, #fb923c);
+  }
+  .icon-analitica {
+    background: linear-gradient(135deg, #10b981, #34d399);
+  }
+  .icon-actualizaciones {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+  }
+  .icon-pms {
+    background: linear-gradient(135deg, #14b8a6, #06b6d4);
+  }
+  .icon-campos-personalizados {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+  }
+  .icon-precheck {
+    background: linear-gradient(135deg, #8b5cf6, #c084fc);
+  }
+  .icon-autoridades {
+    background: linear-gradient(135deg, #22c55e, #84cc16);
+  }
+  .icon-corporate-manager {
+    background: linear-gradient(135deg, #0f766e, #2dd4bf);
+  }
+  .icon-api {
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
+  }
+  .icon-identity-point {
+    background: linear-gradient(135deg, #ea580c, #f59e0b);
+  }
+
+  /* TEXTOS DENTRO DE LAS TARJETAS */
+  /* Título de cada solución */
   h3 {
-    margin: 0 0 0.5rem 0;
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.3;
     color: #0f172a;
-    font-size: 1.3rem;
-  }
-  p {
-    color: #475569;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1.2rem;
-  }
-  a {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 600;
   }
 
-  /* Escritorio: Cuando la pantalla mide más de 768px */
+  /* Descripción/texto de cada solución */
+  p {
+    margin: 0;
+    color: #475569;
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+
+  /* RESPONSIVE - Tablets */
+  /* En pantallas mayores a 768px mostramos 2 columnas */
   @media (min-width: 768px) {
     .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* RESPONSIVE - Ordenadores */
+  /* En pantallas mayores a 1024px mostramos 3 columnas */
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>

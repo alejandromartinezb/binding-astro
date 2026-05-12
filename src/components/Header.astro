@@ -3,6 +3,8 @@ import { Image } from "astro:assets";
 import logoEmpresa from "../assets/logo-binding.webp";
 ---
 
+<!-- Componente del header que se usa en todas las páginas. -->
+<!-- Tiene logo, menú principal y botones de idioma/login. -->
 <header class="main-header">
     <div class="container">
         <a href="/" class="logo">
@@ -27,7 +29,7 @@ import logoEmpresa from "../assets/logo-binding.webp";
         </button>
 
         <nav id="nav-menu" aria-label="Menú principal">
-            <!-- LISTA PRINCIPAL -->
+            <!-- Navegación principal del sitio -->
             <ul class="nav-list">
                 <li><a href="/">Inicio</a></li>
 
@@ -255,6 +257,7 @@ import logoEmpresa from "../assets/logo-binding.webp";
 </style>
 
 <script>
+    // Código simple para abrir y cerrar el menú en móvil.
     const btn = document.getElementById("menu-toggle");
     const menu = document.getElementById("nav-menu");
     btn?.addEventListener("click", () => {

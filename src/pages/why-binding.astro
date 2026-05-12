@@ -1,5 +1,6 @@
 ---
-// 1. Importas el Layout de tu carpeta layouts
+// src/pages/why-binding.astro
+// Página de tipo configurador para mostrar por qué elegir Binding.
 import Layout from "../layouts/Layout.astro";
 
 import OptionsList from "../components/configurator/OptionsList.astro";
@@ -7,6 +8,7 @@ import OptionsList from "../components/configurator/OptionsList.astro";
 
 <Layout title="¿Por qué Binding? | Juego Interactivo">
     <main>
+        <!-- Bloque de introducción de la página -->
         <section class="intro">
             <h1>Personaliza tu hotel con Binding</h1>
             <p>
@@ -15,6 +17,7 @@ import OptionsList from "../components/configurator/OptionsList.astro";
             </p>
         </section>
 
+        <!-- Componente que muestra las preguntas del configurador -->
         <OptionsList />
     </main>
 </Layout>

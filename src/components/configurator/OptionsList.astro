@@ -1,6 +1,7 @@
 ---
-import InteractiveBinding from "../InteractiveBinding.astro";
+import Checkin360 from "../Checkin360.astro";
 
+// Opciones que muestra el configurador. Son los pasos y opciones del quiz.
 const pasosConfigurador = [
     {
         categoria: "Lectura",
@@ -9,31 +10,31 @@ const pasosConfigurador = [
             {
                 titulo: "Manual",
                 descripcion:
-                    "Entrada manual por el personal del hotel. Mayor retraso y riesgo de error.",
+                    "Fallos humanos y tiempos de más de 5 minutos por check-in.",
                 pts: 15,
                 icon: "⌨️",
                 color: "from-gray-400 to-gray-500",
             },
             {
+                titulo: "OCR",
+                descripcion:
+                    "Tecnología obsoleta con fallos de lectura y datos incompletos. Tiempo medio 3-4 minutos.",
+                pts: 35,
+                icon: "📸",
+                color: "from-blue-400 to-blue-500",
+            },
+            {
                 titulo: "Escáner",
                 descripcion:
-                    "Escaneo de documento físico. Cuidado con GDPR y protección de datos.",
+                    "Tecnología obsoleta con fallos de lectura y datos incompletos. Tiempo medio 3-4 minutos.",
                 pts: 35,
                 icon: "🖨️",
                 color: "from-orange-400 to-red-500",
             },
             {
-                titulo: "OCR",
+                titulo: "Lectura digital",
                 descripcion:
-                    "Reconocimiento óptico de caracteres para automatizar la lectura.",
-                pts: 65,
-                icon: "📸",
-                color: "from-blue-400 to-blue-500",
-            },
-            {
-                titulo: "Electrónica",
-                descripcion:
-                    "Firma digital / datos directos si cumple LPR y normas de protección.",
+                    "Lectura 100% veraz del documento electrónico. Check-in en 20 segundos. Ahorro de 400-600 min/día y 18.000-25.000€ al año/hotel.",
                 pts: 100,
                 icon: "⚡",
                 color: "from-indigo-500 to-purple-600",
@@ -41,22 +42,21 @@ const pasosConfigurador = [
         ],
     },
     {
-        categoria: "Verificación",
-        descripcion:
-            "¿Quién confirma la identidad del huésped y cómo se valida?",
+        categoria: "Veracidad del dato",
+        descripcion: "¿Cómo verificas que el dato sea real y correcto?",
         opciones: [
             {
-                titulo: "Manual por trabajador",
+                titulo: "Comprobación visual",
                 descripcion:
-                    "El equipo revisa visualmente la documentación del cliente.",
+                    "Lenta y abierta a errores humanos por el trabajador.",
                 pts: 20,
-                icon: "👤",
+                icon: "👁️",
                 color: "from-gray-500 to-gray-700",
             },
             {
-                titulo: "Sistema automático Binding",
+                titulo: "Comprobación tecnológica",
                 descripcion:
-                    "Validación automática de identidad con tecnología Binding.",
+                    "Rápida y veraz con un sistema automático de Binding.",
                 pts: 100,
                 icon: "🤖",
                 color: "from-indigo-500 to-purple-600",
@@ -64,30 +64,29 @@ const pasosConfigurador = [
         ],
     },
     {
-        categoria: "Digitalización",
-        descripcion:
-            "¿Cómo gestionas los documentos obligatorios y la bienvenida?",
+        categoria: "Paperless",
+        descripcion: "¿Cómo gestionas los documentos y la llegada del huésped?",
         opciones: [
             {
-                titulo: "Físico",
+                titulo: "Todo en papel",
                 descripcion:
-                    "Documentos en papel: registro de viajeros y hoja de bienvenida.",
+                    "Gasto extra de 10.000-15.000€ de media por hotel.",
                 pts: 10,
-                icon: "📂",
+                icon: "📄",
                 color: "from-red-400 to-pink-500",
             },
             {
-                titulo: "Paperless",
+                titulo: "Tablet y papel",
                 descripcion:
-                    "Documentos digitales sin papel, menos espacio y menos errores.",
-                pts: 65,
+                    "Gasto extra de 6.000-8.000€ con soluciones mixtas.",
+                pts: 55,
                 icon: "📱",
                 color: "from-amber-400 to-orange-500",
             },
             {
-                titulo: "Electrónica con firma",
+                titulo: "Todo electrónico",
                 descripcion:
-                    "Documentos firmados electrónicamente con validez legal.",
+                    "Ahorro de 10.000-15.000€ en papel y gestión con una solución electrónica completa.",
                 pts: 100,
                 icon: "✍️",
                 color: "from-indigo-500 to-purple-600",
@@ -96,29 +95,28 @@ const pasosConfigurador = [
     },
     {
         categoria: "Legalidad",
-        descripcion:
-            "¿Cumples la ley o tomas algún riesgo en tus procesos?",
+        descripcion: "¿Cómo de seguro estás frente a sanciones y leyes de protección?",
         opciones: [
             {
-                titulo: "Cumplo mínimo",
+                titulo: "Incumplo la ley",
                 descripcion:
-                    "Cumplimiento parcial con más riesgo de sanciones y multas.",
-                pts: 35,
+                    "Expuesto a multas de 6.000€ a 60.000€ por hotel.",
+                pts: 10,
                 icon: "⚠️",
                 color: "from-orange-400 to-red-500",
             },
             {
-                titulo: "Riesgo controlado",
+                titulo: "No sé si incumplo",
                 descripcion:
-                    "Gestión mixta con controles, pero aún expuesto a fallos.",
-                pts: 65,
-                icon: "🛡️",
+                    "Expuesto a multas de 6.000€ a 60.000€ por hotel.",
+                pts: 35,
+                icon: "❓",
                 color: "from-amber-400 to-orange-500",
             },
             {
-                titulo: "Cumplimiento total",
+                titulo: "Certificado legal",
                 descripcion:
-                    "Procedimientos ajustados a la ley y al reglamento de datos.",
+                    "Cumple las 3 leyes vigentes. Tranquilidad ante reclamaciones de protección de datos.",
                 pts: 100,
                 icon: "⚖️",
                 color: "from-indigo-500 to-purple-600",
@@ -128,4 +126,5 @@ const pasosConfigurador = [
 ];
 ---
 
-<InteractiveBinding pasos={pasosConfigurador} />
+<!-- Mostramos el componente del quiz con los pasos definidos arriba -->
+<Checkin360 pasos={pasosConfigurador} />
