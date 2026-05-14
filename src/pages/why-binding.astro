@@ -1,6 +1,6 @@
 ---
 // src/pages/why-binding.astro
-// Página de tipo configurador para mostrar por qué elegir Binding.
+// Página para explicar por qué elegir Binding y mostrar el comparador al final.
 import Layout from "../layouts/Layout.astro";
 
 import OptionsList from "../components/configurator/OptionsList.astro";
@@ -8,32 +8,647 @@ import OptionsList from "../components/configurator/OptionsList.astro";
 
 <Layout title="¿Por qué Binding? | Juego Interactivo">
     <main>
-        <!-- Bloque de introducción de la página -->
-        <section class="intro">
-            <h1>Personaliza tu hotel con Binding</h1>
-            <p>
-                Elige una opción en cada paso y descubre qué tan seguro está tu
-                negocio.
-            </p>
+        <section class="hero">
+            <div class="hero__eyebrow">Check-in en 20"</div>
+            <h1>Binding Software</h1>
+            <p class="hero__subtitle">De hoteleros para hoteleros</p>
         </section>
 
-        <!-- Componente que muestra las preguntas del configurador -->
-        <OptionsList />
+        <section class="section section--challenge">
+            <div class="section__head">
+                <span class="section__label">El reto</span>
+                <h2>El momento más crítico: la llegada</h2>
+                <p>4-6 min. por check-in</p>
+            </div>
+
+            <div class="grid grid--challenge">
+                <article class="card card--warning">
+                    <h3>Datos sin validar e incompletos</h3>
+                </article>
+                <article class="card card--warning">
+                    <h3>Escaneado de documento</h3>
+                </article>
+                <article class="card card--warning">
+                    <h3>Introducción de datos manualmente</h3>
+                </article>
+            </div>
+
+            <div class="challenge-columns">
+                <div class="challenge-block">
+                    <h3>Experiencia cliente</h3>
+                    <ul>
+                        <li>Cuellos de botella en horas punta.</li>
+                        <li>Introducir datos a mano genera fallos.</li>
+                        <li>Proceso lento y sin personalizar.</li>
+                    </ul>
+                </div>
+                <div class="challenge-block">
+                    <h3>Incumplimiento legal</h3>
+                    <ul>
+                        <li>Real Decreto 933/2021.</li>
+                        <li>Ley Orgánica 4/2015.</li>
+                        <li>Reglamento (UE) 2016/679.</li>
+                    </ul>
+                </div>
+                <div class="challenge-block">
+                    <h3>Tecnología obsoleta</h3>
+                    <ul>
+                        <li>Dispositivo distinto para cada proceso.</li>
+                        <li>Viejos sistemas OCR.</li>
+                        <li>Procesos sin integrar.</li>
+                        <li>Poca seguridad y problemas de mantenimiento.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--solution">
+            <div class="section__head">
+                <span class="section__label">La solución</span>
+                <h2>Una recepción simplificada y unificada</h2>
+            </div>
+
+            <div class="grid grid--solution">
+                <article class="solution-card">
+                    <h3>Lectura electrónica</h3>
+                    <p>
+                        Pasaportes, DNI, MiDNI y documentos internacionales en 5
+                        segundos.
+                    </p>
+                </article>
+                <article class="solution-card">
+                    <h3>Pre check-in online</h3>
+                    <p>El huésped completa el proceso antes de llegar.</p>
+                </article>
+                <article class="solution-card">
+                    <h3>Paperless</h3>
+                    <p>Hoja de registro legal, multidioma y firma digital.</p>
+                </article>
+                <article class="solution-card">
+                    <h3>SES hospedajes</h3>
+                    <p>
+                        Gestión de reserva, registro, envío de datos y
+                        cumplimiento legal.
+                    </p>
+                </article>
+                <article class="solution-card">
+                    <h3>Corporate Manager Cloud</h3>
+                    <p>Gestión centralizada, analítica y control.</p>
+                </article>
+                <article class="solution-card">
+                    <h3>Integración PMS</h3>
+                    <p>Sincronización en tiempo real con tu P.M.S.</p>
+                </article>
+            </div>
+
+            <div class="solution-highlight">
+                <h3>Elimina la complejidad</h3>
+                <p>Único sistema. Único dispositivo. Único flujo.</p>
+            </div>
+        </section>
+
+        <section class="section section--impact">
+            <div class="section__head">
+                <span class="section__label">Impacto</span>
+                <h2>Retorno tangible desde el primer día</h2>
+            </div>
+
+            <div class="grid grid--impact">
+                <article class="impact-card">
+                    <strong>&gt;600 min/día</strong>
+                    <p>Liberados en recepción.</p>
+                </article>
+                <article class="impact-card">
+                    <strong>95 %</strong>
+                    <p>Reducción del tiempo de check-in.</p>
+                </article>
+                <article class="impact-card">
+                    <strong>100 %</strong>
+                    <p>Legal y con reportes SES.</p>
+                </article>
+            </div>
+
+            <div class="impact-details">
+                <p>
+                    Más tiempo para atender al huésped y menos errores en horas
+                    punta.
+                </p>
+                <p>Datos estructurados para analítica corporativa.</p>
+                <p>Estandarización del check-in en toda la cadena.</p>
+            </div>
+        </section>
+
+        <section class="section section--roi">
+            <div class="section__head">
+                <span class="section__label">ROI</span>
+                <h2>Impacto económico por hotel anual</h2>
+            </div>
+
+            <div class="grid grid--roi">
+                <article class="roi-card">
+                    <h3>Ahorro costes operativos</h3>
+                    <p>18.000€ - 25.000€</p>
+                    <small>600 min/día (75% ocupación).</small>
+                </article>
+                <article class="roi-card">
+                    <h3>Ahorro papeles</h3>
+                    <p>10.000€ - 15.000€</p>
+                    <small>100 % digital.</small>
+                </article>
+                <article class="roi-card">
+                    <h3>Ahorro herramientas de terceros</h3>
+                    <p>7.000€ - 12.000€</p>
+                    <small>Firma, check-in online, pagos, SES, etc.</small>
+                </article>
+            </div>
+
+            <div class="roi-summary">
+                <p>Coste anual tradicional: 34.000€ - 52.000€</p>
+                <p>Coste Binding: 7.200€ + 595€ tablet</p>
+                <p><strong>Ahorro neto: 26.000€ - 44.000€</strong></p>
+                <p><strong>ROI: 1-3 meses</strong></p>
+            </div>
+        </section>
+
+        <section class="section section--pricing">
+            <div class="section__head">
+                <span class="section__label">Propuesta económica</span>
+                <h2>Precio por habitación / día</h2>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Binding Identity Point</h3>
+                <p>Dispositivo BIP: 595€</p>
+                <p class="pricing-note">Posibilidad de financiación.</p>
+                <p>Escalado de precios:</p>
+                <ul>
+                    <li>De 10 a 30 hoteles: 6% de descuento.</li>
+                    <li>Más de 30 hoteles: 12% de descuento.</li>
+                </ul>
+                <p>
+                    BIP personalizado: posibilidad de personalizarlo con la
+                    imagen de la cadena.
+                </p>
+            </div>
+        </section>
+
+        <section class="section section--services">
+            <div class="section__head">
+                <span class="section__label">Implantación</span>
+                <h2>Servicios necesarios para arranque del piloto</h2>
+            </div>
+
+            <div class="grid grid--services">
+                <article class="service-card">
+                    <h3>Integración</h3>
+                    <p>
+                        Análisis, consultoría y parametrización para la
+                        integración con Binding.
+                    </p>
+                </article>
+                <article class="service-card">
+                    <h3>Formación y parametrización Corporate</h3>
+                    <p>
+                        Configuración y formación del módulo Corporate Manager
+                        para el equipo.
+                    </p>
+                    <p class="service-price">85€/hora</p>
+                </article>
+                <article class="service-card">
+                    <h3>Consultoría de negocio y técnica</h3>
+                    <p>Consultoría de negocio y técnica a cargo de Binding.</p>
+                    <p class="service-price">85€/hora</p>
+                </article>
+                <article class="service-card">
+                    <h3>Piloto</h3>
+                    <p>
+                        Puesta en marcha del piloto con acompañamiento completo
+                        del equipo Binding.
+                    </p>
+                    <p class="service-price">85€/hora</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section section--standard">
+            <div class="section__head">
+                <span class="section__label">Estándar de recepción</span>
+                <h2>Binding como estándar de recepción</h2>
+            </div>
+
+            <div class="standard-grid">
+                <div class="standard-card">
+                    <h3>Qué consigue la cadena</h3>
+                    <ul>
+                        <li>Eliminación de herramientas dispersas.</li>
+                        <li>Estandarización en todos los hoteles.</li>
+                        <li>Integración directa con PMS.</li>
+                        <li>Reducción de carga operativa en recepción.</li>
+                        <li>Datos estructurados y control centralizado.</li>
+                    </ul>
+                </div>
+                <div class="standard-card">
+                    <h3>Qué evita</h3>
+                    <ul>
+                        <li>Dependencia de múltiples proveedores.</li>
+                        <li>Costes ocultos de integración.</li>
+                        <li>Problemas operativos en recepción.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--closing">
+            <div class="closing-card">
+                <h2>Binding no es una herramienta más</h2>
+                <p>Es la simplificación completa del puesto de recepción.</p>
+            </div>
+        </section>
+
+        <section id="configurator" class="configurator-section">
+            <div class="configurator-header">
+                <h2>Comprueba tu nivel de seguridad</h2>
+                <p>
+                    Elige cada opción y descubre el estado de tu proceso de
+                    check-in.
+                </p>
+            </div>
+            <OptionsList />
+        </section>
     </main>
 </Layout>
 
 <style>
     main {
         padding: 2rem;
-        max-width: 900px;
+        max-width: 1080px;
         margin: 0 auto;
         text-align: center;
     }
-    h1 {
-        color: #4f46e5;
-        font-size: 2.5rem;
+
+    .hero {
+        padding: 2rem 1rem 1.5rem;
+        margin-bottom: 2rem;
     }
-    .intro {
+    .hero__eyebrow {
+        display: inline-flex;
+        background: #eef2ff;
+        color: #4338ca;
+        font-weight: 700;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+    .hero h1 {
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        margin: 0;
+        color: #1f2937;
+        line-height: 1;
+    }
+    .hero__subtitle {
+        color: #475569;
+        font-size: 1.1rem;
+        margin: 1rem auto 0;
+        max-width: 760px;
+        line-height: 1.9;
+    }
+
+    .section {
         margin-bottom: 3rem;
+        padding: 0 1rem;
+        text-align: left;
+    }
+    .section__head {
+        max-width: 760px;
+        margin: 0 auto 1.75rem;
+    }
+    .section__label {
+        display: inline-block;
+        color: #4338ca;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.15em;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+    .section h2 {
+        margin: 0;
+        font-size: 2rem;
+        color: #111827;
+        line-height: 1.1;
+    }
+    .section p {
+        color: #475569;
+        line-height: 1.8;
+        margin: 1rem 0 0;
+    }
+
+    .grid {
+        display: grid;
+        gap: 1.25rem;
+    }
+
+    .grid--challenge {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-bottom: 2rem;
+    }
+    .card {
+        padding: 1.5rem;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+        text-align: left;
+    }
+    .card--warning {
+        border: 1px solid rgba(239, 68, 68, 0.15);
+    }
+    .card--warning h3 {
+        color: #b91c1c;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .challenge-columns {
+        display: grid;
+        gap: 1.25rem;
+    }
+    .challenge-block {
+        padding: 1.75rem;
+        border-radius: 20px;
+        background: #f8fafc;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .challenge-block h3 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        color: #1f2937;
+    }
+    .challenge-block ul {
+        margin: 0;
+        padding-left: 1.35rem;
+        color: #475569;
+        line-height: 1.8;
+    }
+    .challenge-block li {
+        margin-bottom: 0.75rem;
+    }
+
+    .grid--solution {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        margin-bottom: 1.5rem;
+    }
+    .solution-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+        background: #ffffff;
+        border: 1px solid rgba(79, 70, 229, 0.12);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.06);
+        text-align: left;
+    }
+    .solution-card h3 {
+        margin-top: 0;
+        color: #4338ca;
+        font-size: 1.1rem;
+    }
+    .solution-card p {
+        margin: 0.85rem 0 0;
+        color: #475569;
+        line-height: 1.75;
+    }
+    .solution-highlight {
+        background: #eef2ff;
+        padding: 1.5rem 1.75rem;
+        border-radius: 20px;
+        border: 1px solid rgba(99, 102, 241, 0.16);
+        max-width: 760px;
+        margin: 0 auto;
+    }
+    .solution-highlight h3 {
+        margin: 0 0 0.5rem;
+        color: #111827;
+    }
+
+    .grid--impact {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-bottom: 1.5rem;
+    }
+    .impact-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 1.5rem;
+        border: 1px solid rgba(79, 70, 229, 0.12);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.05);
+        text-align: left;
+    }
+    .impact-card strong {
+        display: block;
+        font-size: 2rem;
+        color: #4338ca;
+        margin-bottom: 0.75rem;
+    }
+    .impact-card p {
+        margin: 0;
+        color: #475569;
+        line-height: 1.8;
+    }
+    .impact-details {
+        max-width: 760px;
+        margin: 0 auto;
+        color: #475569;
+        line-height: 1.8;
+        display: grid;
+        gap: 0.9rem;
+    }
+
+    .grid--roi {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-bottom: 1.5rem;
+    }
+    .roi-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+        background: #ffffff;
+        border: 1px solid rgba(79, 70, 229, 0.12);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.05);
+        text-align: left;
+    }
+    .roi-card h3 {
+        margin: 0 0 0.75rem;
+        color: #4338ca;
+        font-size: 1.05rem;
+    }
+    .roi-card p {
+        margin: 0;
+        font-size: 1.35rem;
+        color: #111827;
+        font-weight: 700;
+    }
+    .roi-card small {
+        display: block;
+        margin-top: 0.75rem;
+        color: #6b7280;
+    }
+    .roi-summary {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 1.75rem;
+        background: #f8fafc;
+        border-radius: 20px;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        color: #1f2937;
+        line-height: 1.8;
+    }
+    .roi-summary p {
+        margin: 0.75rem 0;
+    }
+    .roi-summary strong {
+        color: #4338ca;
+    }
+
+    .pricing-card {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 1.75rem;
+        border-radius: 20px;
+        background: #ffffff;
+        border: 1px solid rgba(79, 70, 229, 0.12);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.05);
+        text-align: left;
+    }
+    .pricing-card h3 {
+        margin: 0 0 0.75rem;
+        color: #4338ca;
+    }
+    .pricing-card p {
+        margin: 0.5rem 0;
+        color: #475569;
+        line-height: 1.75;
+    }
+    .pricing-note {
+        font-weight: 700;
+        color: #111827;
+        margin-top: 0.5rem;
+    }
+    .pricing-card ul {
+        padding-left: 1.35rem;
+        margin: 1rem 0;
+        color: #475569;
+        line-height: 1.8;
+    }
+
+    .grid--services {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .service-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+        background: #ffffff;
+        border: 1px solid rgba(79, 70, 229, 0.12);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.05);
+        text-align: left;
+    }
+    .service-card h3 {
+        margin-top: 0;
+        color: #4338ca;
+        margin-bottom: 0.75rem;
+    }
+    .service-card p {
+        margin: 0.5rem 0;
+        color: #475569;
+        line-height: 1.7;
+    }
+    .service-price {
+        font-weight: 700;
+        color: #111827;
+    }
+
+    .standard-grid {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    .standard-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+        background: #ffffff;
+        border: 1px solid rgba(79, 70, 229, 0.12);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.05);
+        text-align: left;
+    }
+    .standard-card h3 {
+        margin-top: 0;
+        color: #4338ca;
+        margin-bottom: 0.75rem;
+    }
+    .standard-card ul {
+        padding-left: 1.35rem;
+        margin: 0;
+        color: #475569;
+        line-height: 1.8;
+    }
+    .standard-card li {
+        margin-bottom: 0.75rem;
+    }
+
+    .closing-card {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: #eef2ff;
+        border-radius: 24px;
+        border: 1px solid rgba(99, 102, 241, 0.16);
+        text-align: center;
+    }
+    .closing-card h2 {
+        margin: 0 0 0.75rem;
+        color: #111827;
+    }
+    .closing-card p {
+        margin: 0;
+        color: #475569;
+        line-height: 1.8;
+    }
+
+    .configurator-section {
+        padding: 0 1rem 2rem;
+        text-align: left;
+        scroll-margin-top: 100px; /* Para que el header no tape el título de la sección */
+    }
+    .configurator-header {
+        max-width: 760px;
+        margin: 0 auto 2rem;
+    }
+    .configurator-header h2 {
+        color: #111827;
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+    .configurator-header p {
+        color: #475569;
+        line-height: 1.8;
+    }
+
+    @media (max-width: 880px) {
+        .grid--challenge,
+        .grid--solution,
+        .grid--impact,
+        .grid--roi,
+        .grid--services,
+        .standard-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        main {
+            padding: 1.5rem 1rem;
+        }
+        .section {
+            padding: 0;
+        }
+        .hero {
+            padding: 1.5rem 0 1rem;
+        }
     }
 </style>

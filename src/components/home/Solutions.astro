@@ -9,6 +9,8 @@ const solutions = [
     id: "checkin",
     title: "Check-in personalizado",
     text: "Experiencias de llegada adaptadas a cada huésped y canal.",
+    link: "/why-binding#configurator",
+    linkText: "Ir al configurador",
   },
   {
     id: "paperless",
@@ -101,6 +103,9 @@ const solutions = [
           </div>
           <!-- Descripción o texto de la solución -->
           <p>{solution.text}</p>
+          {solution.link ? (
+            <a class="card-link" href={solution.link}>{solution.linkText}</a>
+          ) : null}
         </article>
       ))
     }
@@ -243,6 +248,29 @@ const solutions = [
     color: #475569;
     line-height: 1.75;
     font-size: 1rem;
+  }
+
+  .card-link {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: #4338ca;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .card-link:hover {
+    text-decoration: underline;
+  }
+
+  .card-link {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: #4338ca;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .card-link:hover {
+    text-decoration: underline;
   }
 
   /* RESPONSIVE - Tablets */
