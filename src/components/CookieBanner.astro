@@ -1,0 +1,60 @@
+---
+---
+
+<div id="cookie-banner" class="cookie-banner cookie-banner--hidden" role="dialog" aria-live="polite">
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__text">
+      <strong>Usamos cookies</strong>
+      <p>Utilizamos cookies para recordar tus preferencias (idioma, sesión) y mejorar la experiencia. Puedes aceptar o elegir preferencias.</p>
+    </div>
+
+    <div class="cookie-banner__controls">
+      <label for="cookie-lang">Idioma:</label>
+      <select id="cookie-lang" aria-label="Elegir idioma">
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+      </select>
+
+      <button id="cookie-accept" class="cookie-banner__accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner { position: fixed; left: 1rem; right: 1rem; bottom: 1rem; z-index: 60; display:flex; justify-content:center; }
+  .cookie-banner__inner { background: white; border-radius: 12px; padding: 1rem 1.25rem; box-shadow: 0 6px 24px rgba(2,6,23,0.08); max-width: 1100px; width:100%; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .cookie-banner__text p { margin: 0.25rem 0 0; color: #475569; }
+  .cookie-banner__controls { display:flex; gap:0.5rem; align-items:center; }
+  .cookie-banner__accept { background:#4f46e5; color:white; border:none; padding:0.5rem 0.9rem; border-radius:8px; cursor:pointer; }
+  .cookie-banner--hidden { display:none; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner') as HTMLDivElement | null;
+    const acceptBtn = document.getElementById('cookie-accept') as HTMLButtonElement | null;
+    const langSelect = document.getElementById('cookie-lang') as HTMLSelectElement | null;
+
+    const consent = window.cookieUtils?.getCookie('cookie_consent');
+    const siteLang = window.cookieUtils?.getCookie('site_lang') || (navigator.language || 'es').slice(0,2);
+
+    if (langSelect) {
+      langSelect.value = siteLang;
+    }
+
+    if (!consent && banner) {
+      banner.classList.remove('cookie-banner--hidden');
+    }
+
+    acceptBtn?.addEventListener('click', () => {
+      window.cookieUtils?.setCookie('cookie_consent', 'accepted', 365);
+      banner?.classList.add('cookie-banner--hidden');
+    });
+
+    langSelect?.addEventListener('change', (e: Event) => {
+      const v = (e.target as HTMLSelectElement).value;
+      window.cookieUtils?.setCookie('site_lang', v, 365);
+      document.documentElement.lang = v;
+    });
+  });
+</script>

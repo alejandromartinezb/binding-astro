@@ -99,6 +99,16 @@ const { pasos = [] }: Props = Astro.props;
 <script>
     const initBindingQuiz = () => {
         let currentStep = 0;
+        // Restaurar paso desde sessionStorage (no guardamos resultado final)
+        try {
+            const saved = sessionStorage.getItem('binding_quiz_step');
+            if (saved) {
+                const n = parseInt(saved, 10);
+                if (!isNaN(n) && n >= 0) currentStep = n;
+            }
+        } catch (e) {
+            
+        }
         const totalPoints: number[] = [];
         const selectedTitles: string[] = [];
 
@@ -229,6 +239,8 @@ const { pasos = [] }: Props = Astro.props;
                         "binding-step--hidden"
                     );
                     currentStep += 1;
+                    // Guardamos paso actual en sessionStorage (temporal)
+                    try { sessionStorage.setItem('binding_quiz_step', String(currentStep)); } catch (e) { /* noop */ }
                     stepBoxes[currentStep].classList.replace(
                         "binding-step--hidden",
                         "binding-step--active"
@@ -277,6 +289,18 @@ const { pasos = [] }: Props = Astro.props;
             const feedback = document.getElementById("binding-feedback");
             if (feedback) {
                 feedback.innerText = getSummaryText(media);
+            }
+
+            // Al finalizar borramos el progreso guardado en sessionStorage
+            try { sessionStorage.removeItem('binding_quiz_step'); } catch (e) {}
+
+            // Interceptar el botón de reinicio para borrar el progreso y recargar
+            const resetBtn = document.querySelector('.binding-results__reset');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', (ev) => {
+                    try { sessionStorage.removeItem('binding_quiz_step'); } catch (e) {}
+                    // allow default action (reload) after cleanup
+                });
             }
         }
     };

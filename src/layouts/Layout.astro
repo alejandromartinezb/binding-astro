@@ -2,6 +2,7 @@
 import "../styles/variables.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 
 // El layout general de la web es el mismo para todas las páginas.
 // Incluye el header, el footer y un slot donde se renderiza el contenido.
@@ -26,8 +27,40 @@ const { title = "Binding Software" } = Astro.props;
 			rel="stylesheet"
 		/>
 	</head>
+
+	<!-- Helper de cookies disponible globalmente en `window.cookieUtils` -->
+	<script>
+		window.cookieUtils = {
+			setCookie(name: string, value: string, days?: number) {
+				const v = encodeURIComponent(value);
+				let cookie = name + '=' + v + '; path=/; SameSite=Lax';
+				if (typeof days === 'number') {
+					const expires = new Date(Date.now() + days * 864e5).toUTCString();
+					cookie += '; expires=' + expires;
+				}
+				document.cookie = cookie;
+			},
+			getCookie(name: string) {
+				const match = document.cookie.split('; ').find(row => row.startsWith(name + '='));
+				if (!match) return '';
+				return decodeURIComponent(match.split('=')[1]);
+			},
+			deleteCookie(name: string) {
+				document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+			}
+		};
+
+		// Aplicar idioma si está guardado
+		(function(){
+			try {
+				const lang = window.cookieUtils.getCookie('site_lang');
+				if (lang) document.documentElement.lang = lang;
+			} catch(e){}
+		})();
+	</script>
 	<body>
 		<Header />
+		<CookieBanner />
 
 		<main>
 			<!-- Aquí va el contenido específico de cada página -->

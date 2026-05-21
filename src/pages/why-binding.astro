@@ -2,8 +2,6 @@
 // src/pages/why-binding.astro
 // Página para explicar por qué elegir Binding y mostrar el comparador al final.
 import Layout from "../layouts/Layout.astro";
-
-import OptionsList from "../components/configurator/OptionsList.astro";
 ---
 
 <Layout title="¿Por qué Binding? | Juego Interactivo">
@@ -23,12 +21,15 @@ import OptionsList from "../components/configurator/OptionsList.astro";
 
             <div class="grid grid--challenge">
                 <article class="card card--warning">
+                    <span class="card-icon">⚠️</span>
                     <h3>Datos sin validar e incompletos</h3>
                 </article>
                 <article class="card card--warning">
+                    <span class="card-icon">📄</span>
                     <h3>Escaneado de documento</h3>
                 </article>
                 <article class="card card--warning">
+                    <span class="card-icon">⌨️</span>
                     <h3>Introducción de datos manualmente</h3>
                 </article>
             </div>
@@ -70,32 +71,32 @@ import OptionsList from "../components/configurator/OptionsList.astro";
 
             <div class="grid grid--solution">
                 <article class="solution-card">
+                    <span class="solution-icon">📡</span>
                     <h3>Lectura electrónica</h3>
-                    <p>
-                        Pasaportes, DNI, MiDNI y documentos internacionales en 5
-                        segundos.
-                    </p>
+                    <p>Pasaportes, DNI, MiDNI y documentos internacionales en 5 segundos.</p>
                 </article>
                 <article class="solution-card">
+                    <span class="solution-icon">💻</span>
                     <h3>Pre check-in online</h3>
                     <p>El huésped completa el proceso antes de llegar.</p>
                 </article>
                 <article class="solution-card">
+                    <span class="solution-icon">📝</span>
                     <h3>Paperless</h3>
                     <p>Hoja de registro legal, multidioma y firma digital.</p>
                 </article>
                 <article class="solution-card">
+                    <span class="solution-icon">🏨</span>
                     <h3>SES hospedajes</h3>
-                    <p>
-                        Gestión de reserva, registro, envío de datos y
-                        cumplimiento legal.
-                    </p>
+                    <p>Gestión de reserva, registro, envío de datos y cumplimiento legal.</p>
                 </article>
                 <article class="solution-card">
+                    <span class="solution-icon">☁️</span>
                     <h3>Corporate Manager Cloud</h3>
                     <p>Gestión centralizada, analítica y control.</p>
                 </article>
                 <article class="solution-card">
+                    <span class="solution-icon">🔗</span>
                     <h3>Integración PMS</h3>
                     <p>Sincronización en tiempo real con tu P.M.S.</p>
                 </article>
@@ -170,110 +171,15 @@ import OptionsList from "../components/configurator/OptionsList.astro";
             </div>
         </section>
 
-        <section class="section section--pricing">
-            <div class="section__head">
-                <span class="section__label">Propuesta económica</span>
-                <h2>Precio por habitación / día</h2>
-            </div>
-
-            <div class="pricing-card">
-                <h3>Binding Identity Point</h3>
-                <p>Dispositivo BIP: 595€</p>
-                <p class="pricing-note">Posibilidad de financiación.</p>
-                <p>Escalado de precios:</p>
-                <ul>
-                    <li>De 10 a 30 hoteles: 6% de descuento.</li>
-                    <li>Más de 30 hoteles: 12% de descuento.</li>
-                </ul>
-                <p>
-                    BIP personalizado: posibilidad de personalizarlo con la
-                    imagen de la cadena.
-                </p>
-            </div>
-        </section>
-
-        <section class="section section--services">
-            <div class="section__head">
-                <span class="section__label">Implantación</span>
-                <h2>Servicios necesarios para arranque del piloto</h2>
-            </div>
-
-            <div class="grid grid--services">
-                <article class="service-card">
-                    <h3>Integración</h3>
-                    <p>
-                        Análisis, consultoría y parametrización para la
-                        integración con Binding.
-                    </p>
-                </article>
-                <article class="service-card">
-                    <h3>Formación y parametrización Corporate</h3>
-                    <p>
-                        Configuración y formación del módulo Corporate Manager
-                        para el equipo.
-                    </p>
-                    <p class="service-price">85€/hora</p>
-                </article>
-                <article class="service-card">
-                    <h3>Consultoría de negocio y técnica</h3>
-                    <p>Consultoría de negocio y técnica a cargo de Binding.</p>
-                    <p class="service-price">85€/hora</p>
-                </article>
-                <article class="service-card">
-                    <h3>Piloto</h3>
-                    <p>
-                        Puesta en marcha del piloto con acompañamiento completo
-                        del equipo Binding.
-                    </p>
-                    <p class="service-price">85€/hora</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="section section--standard">
-            <div class="section__head">
-                <span class="section__label">Estándar de recepción</span>
-                <h2>Binding como estándar de recepción</h2>
-            </div>
-
-            <div class="standard-grid">
-                <div class="standard-card">
-                    <h3>Qué consigue la cadena</h3>
-                    <ul>
-                        <li>Eliminación de herramientas dispersas.</li>
-                        <li>Estandarización en todos los hoteles.</li>
-                        <li>Integración directa con PMS.</li>
-                        <li>Reducción de carga operativa en recepción.</li>
-                        <li>Datos estructurados y control centralizado.</li>
-                    </ul>
+        <section class="section section--cta">
+            <div class="cta-card">
+                <div>
+                    <span class="section__label">Tu propia solución</span>
+                    <h2>Diseña el proceso que quieres para tu hotel</h2>
+                    <p>Accede al configurador y define los parámetros de tu negocio para ver cómo se adapta Binding.</p>
                 </div>
-                <div class="standard-card">
-                    <h3>Qué evita</h3>
-                    <ul>
-                        <li>Dependencia de múltiples proveedores.</li>
-                        <li>Costes ocultos de integración.</li>
-                        <li>Problemas operativos en recepción.</li>
-                    </ul>
-                </div>
+                <a class="btn-secondary" href="/configurador">Ir al configurador</a>
             </div>
-        </section>
-
-        <section class="section section--closing">
-            <div class="closing-card">
-                <h2>Binding no es una herramienta más</h2>
-                <p>Es la simplificación completa del puesto de recepción.</p>
-            </div>
-        </section>
-
-        <section id="configurator" class="configurator-section">
-            <div class="configurator-header">
-                <h2>Comprueba tu nivel de seguridad</h2>
-                <p>
-                    Elige cada opción y descubre el estado de tu proceso de
-                    check-in.
-                </p>
-            </div>
-            <OptionsList />
         </section>
     </main>
 </Layout>
@@ -287,13 +193,17 @@ import OptionsList from "../components/configurator/OptionsList.astro";
     }
 
     .hero {
-        padding: 2rem 1rem 1.5rem;
-        margin-bottom: 2rem;
+        padding: 2.5rem 1.5rem 2rem;
+        margin-bottom: 2.5rem;
+        border-radius: 32px;
+        background: linear-gradient(135deg, rgba(238, 242, 255, 0.8), rgba(255, 255, 255, 0.95));
+        border: 1px solid rgba(79, 70, 229, 0.12);
+        box-shadow: 0 24px 48px rgba(79, 70, 229, 0.08);
     }
     .hero__eyebrow {
         display: inline-flex;
-        background: #eef2ff;
-        color: #4338ca;
+        background: rgba(79, 70, 229, 0.12);
+        color: var(--color-contraste-1);
         font-weight: 700;
         padding: 0.55rem 1rem;
         border-radius: 999px;
@@ -325,7 +235,7 @@ import OptionsList from "../components/configurator/OptionsList.astro";
     }
     .section__label {
         display: inline-block;
-        color: #4338ca;
+        color: var(--color-contraste-2);
         text-transform: uppercase;
         font-size: 0.8rem;
         letter-spacing: 0.15em;
@@ -361,10 +271,11 @@ import OptionsList from "../components/configurator/OptionsList.astro";
         text-align: left;
     }
     .card--warning {
-        border: 1px solid rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(57, 119, 180, 0.2);
+        background: rgba(57, 119, 180, 0.06);
     }
     .card--warning h3 {
-        color: #b91c1c;
+        color: var(--color-base-2);
         margin: 0;
         font-size: 1.1rem;
     }
@@ -376,8 +287,8 @@ import OptionsList from "../components/configurator/OptionsList.astro";
     .challenge-block {
         padding: 1.75rem;
         border-radius: 20px;
-        background: #f8fafc;
-        border: 1px solid rgba(148, 163, 184, 0.25);
+        background: rgba(224, 225, 221, 0.75);
+        border: 1px solid rgba(63, 66, 56, 0.12);
     }
     .challenge-block h3 {
         margin-top: 0;
@@ -399,21 +310,21 @@ import OptionsList from "../components/configurator/OptionsList.astro";
         margin-bottom: 1.5rem;
     }
     .solution-card {
-        padding: 1.5rem;
-        border-radius: 20px;
-        background: #ffffff;
-        border: 1px solid rgba(79, 70, 229, 0.12);
-        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.06);
+        padding: 2rem 1.5rem 1.5rem;
+        border-radius: 24px;
+        background: rgba(127, 71, 144, 0.06);
+        border: 1px solid rgba(79, 70, 229, 0.18);
+        box-shadow: 0 14px 28px rgba(79, 70, 229, 0.08);
         text-align: left;
     }
     .solution-card h3 {
         margin-top: 0;
-        color: #4338ca;
-        font-size: 1.1rem;
+        color: var(--color-contraste-1);
+        font-size: 1.15rem;
     }
     .solution-card p {
-        margin: 0.85rem 0 0;
-        color: #475569;
+        margin: 1rem 0 0;
+        color: var(--color-parrafo);
         line-height: 1.75;
     }
     .solution-highlight {
@@ -610,23 +521,69 @@ import OptionsList from "../components/configurator/OptionsList.astro";
         line-height: 1.8;
     }
 
-    .configurator-section {
-        padding: 0 1rem 2rem;
-        text-align: left;
-        scroll-margin-top: 100px; /* Para que el header no tape el título de la sección */
+    .cta-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        padding: 2rem 2rem;
+        border-radius: 24px;
+        background: linear-gradient(135deg, rgba(127, 71, 144, 0.14), rgba(57, 119, 180, 0.12));
+        border: 1px solid rgba(127, 71, 144, 0.22);
+        box-shadow: 0 18px 40px rgba(79, 70, 229, 0.1);
+        max-width: 1000px;
+        margin: 0 auto 3rem;
     }
-    .configurator-header {
-        max-width: 760px;
-        margin: 0 auto 2rem;
-    }
-    .configurator-header h2 {
+    .cta-card h2 {
+        margin: 0.35rem 0 0.85rem;
+        font-size: 2.25rem;
         color: #111827;
-        font-size: 2rem;
-        margin-bottom: 0.75rem;
     }
-    .configurator-header p {
-        color: #475569;
+    .cta-card p {
+        margin: 0;
+        color: var(--color-parrafo);
         line-height: 1.8;
+    }
+    .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 1.75rem;
+        border-radius: 999px;
+        background: var(--color-contraste-2);
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .btn-secondary:hover {
+        transform: translateY(-2px);
+        background: #2f65a8;
+    }
+    .card-icon,
+    .solution-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: var(--color-contraste-2);
+        color: white;
+        font-size: 1.35rem;
+        margin-bottom: 1rem;
+    }
+    .solution-card {
+        position: relative;
+        padding-top: 1.5rem;
+    }
+    .solution-card h3 {
+        margin-top: 0;
+        color: var(--color-contraste-1);
+        font-size: 1.2rem;
+    }
+    .solution-card p {
+        margin: 1rem 0 0;
     }
 
     @media (max-width: 880px) {
