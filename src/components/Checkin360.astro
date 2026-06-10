@@ -99,6 +99,7 @@ const { pasos = [] }: Props = Astro.props;
 <script>
     const initBindingQuiz = () => {
         let currentStep = 0;
+        const consentAccepted = window.cookieUtils?.getCookie('cookie_consent') === 'accepted';
         // Restaurar paso desde sessionStorage (no guardamos resultado final)
         try {
             const saved = sessionStorage.getItem('binding_quiz_step');
@@ -106,8 +107,14 @@ const { pasos = [] }: Props = Astro.props;
                 const n = parseInt(saved, 10);
                 if (!isNaN(n) && n >= 0) currentStep = n;
             }
+
+            if (consentAccepted) {
+                const launchCount = parseInt(window.storageUtils?.getLocal('quiz_launches') || '0', 10) + 1;
+                window.storageUtils?.setLocal('quiz_launches', String(launchCount));
+                window.storageUtils?.setLocal('last_quiz_visit', new Date().toISOString());
+            }
         } catch (e) {
-            
+            // noop
         }
         const totalPoints: number[] = [];
         const selectedTitles: string[] = [];
@@ -241,6 +248,9 @@ const { pasos = [] }: Props = Astro.props;
                     currentStep += 1;
                     // Guardamos paso actual en sessionStorage (temporal)
                     try { sessionStorage.setItem('binding_quiz_step', String(currentStep)); } catch (e) { /* noop */ }
+                    if (consentAccepted) {
+                        try { window.storageUtils?.setLocal('last_quiz_step', String(currentStep)); } catch (e) { /* noop */ }
+                    }
                     stepBoxes[currentStep].classList.replace(
                         "binding-step--hidden",
                         "binding-step--active"
@@ -293,13 +303,20 @@ const { pasos = [] }: Props = Astro.props;
 
             // Al finalizar borramos el progreso guardado en sessionStorage
             try { sessionStorage.removeItem('binding_quiz_step'); } catch (e) {}
+            if (consentAccepted) {
+                try {
+                    const completed = parseInt(window.storageUtils?.getLocal('quiz_completions') || '0', 10) + 1;
+                    window.storageUtils?.setLocal('quiz_completions', String(completed));
+                    window.storageUtils?.setLocal('last_quiz_completed_at', new Date().toISOString());
+                } catch (e) { /* noop */ }
+            }
 
             // Interceptar el botón de reinicio para borrar el progreso y recargar
             const resetBtn = document.querySelector('.binding-results__reset');
             if (resetBtn) {
                 resetBtn.addEventListener('click', (ev) => {
                     try { sessionStorage.removeItem('binding_quiz_step'); } catch (e) {}
-                    // allow default action (reload) after cleanup
+                    // permite la acción por defecto (recargar) después de limpiar el progreso
                 });
             }
         }
