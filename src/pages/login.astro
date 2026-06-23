@@ -1,19 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getMessages, t, getPathWithLang } from "../utils/i18n";
+
+const messages = getMessages('es');
 ---
 
-<Layout title="Login | Binding Software">
+<Layout title={t(messages, 'login.title') + ' | Binding Software'} pathname="/login">
     <main class="auth-page">
         <section class="auth-panel" aria-labelledby="login-title">
-            <p class="eyebrow">Acceso cliente Binding</p>
-            <h1 id="login-title">Iniciar sesión</h1>
+            <p class="eyebrow">{t(messages, 'login.eyebrow')}</p>
+            <h1 id="login-title">{t(messages, 'login.title')}</h1>
             <p class="intro">
-                Accede a tu panel de cliente hotelero para gestionar tus soluciones de check-in digital y tus datos de cumplimiento.
+                {t(messages, 'login.intro')}
             </p>
 
-            <form class="auth-form" method="post" action="/login" novalidate>
+            <form class="auth-form" method="post" action={getPathWithLang('/login', 'es')} novalidate>
                 <div class="field-group">
-                    <label for="email">Correo electrónico</label>
+                    <label for="email">{t(messages, 'login.emailLabel')}</label>
                     <input
                         id="email"
                         name="email"
@@ -21,12 +24,12 @@ import Layout from "../layouts/Layout.astro";
                         autocomplete="username"
                         required
                         aria-required="true"
-                        placeholder="nombre@ejemplo.com"
+                        placeholder={t(messages, 'login.emailPlaceholder')}
                     />
                 </div>
 
                 <div class="field-group">
-                    <label for="password">Contraseña</label>
+                    <label for="password">{t(messages, 'login.passwordLabel')}</label>
                     <input
                         id="password"
                         name="password"
@@ -34,19 +37,19 @@ import Layout from "../layouts/Layout.astro";
                         autocomplete="current-password"
                         required
                         aria-required="true"
-                        placeholder="Contraseña segura"
+                        placeholder={t(messages, 'login.passwordPlaceholder')}
                     />
                 </div>
 
                 <div class="field-group field-inline">
                     <input id="remember" name="remember" type="checkbox" />
-                    <label for="remember">Mantener sesión iniciada</label>
+                    <label for="remember">{t(messages, 'login.remember')}</label>
                 </div>
 
-                <button type="submit" class="primary-button">Entrar</button>
+                <button type="submit" class="primary-button">{t(messages, 'login.submit')}</button>
 
                 <p class="register-link">
-                    ¿Eres un hotelero nuevo? <a href="/registro">Regístrate como cliente</a> para acceder a las soluciones de Binding.
+                    {t(messages, 'login.register')} <a href={getPathWithLang('/registro', 'es')}>Regístrate como cliente</a> para acceder a las soluciones de Binding.
                 </p>
             </form>
             <script>

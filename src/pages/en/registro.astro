@@ -1,0 +1,12 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import RegistroForm from "../../components/RegistroForm.astro";
+import { getMessages, t } from "../../utils/i18n";
+const messages = getMessages('en');
+---
+
+<Layout title={t(messages, 'registro.title')} pathname="/en/registro">
+    <main class="registration-page">
+        <RegistroForm lang="en" />
+    </main>
+</Layout>

@@ -1,5 +1,8 @@
 ---
+import { getMessages } from "../utils/i18n";
+
 interface Option {
+    id: string;
     titulo: string;
     descripcion: string;
     pts: number;
@@ -15,18 +18,21 @@ interface Step {
 
 interface Props {
     pasos: Step[];
+    lang?: 'es' | 'en';
 }
 
-const { pasos = [] }: Props = Astro.props;
+const { pasos = [], lang = 'es' }: Props = Astro.props;
+const messages = getMessages(lang);
+const checkinMessages = messages.checkin360;
 ---
 
 <!--  Componente interactivo que muestra un quiz de check-in 360. -->
 <!-- Recibe un array de pasos y opciones desde el padre. -->
-<div class="binding-quiz">
+<div class="binding-quiz" data-checkin={JSON.stringify(checkinMessages)}>
     <div id="binding-quiz-ui" class="binding-quiz__ui">
         <div class="binding-progress">
             <p class="binding-progress__label">
-                Paso <span id="binding-current-step">1</span> de {pasos.length}
+                {checkinMessages.stepLabel} <span id="binding-current-step">1</span> de {pasos.length}
             </p>
             <div class="binding-progress__bar-bg">
                 <div id="binding-bar-fill" class="binding-progress__bar-fill"></div>
@@ -54,6 +60,7 @@ const { pasos = [] }: Props = Astro.props;
                                 type="button"
                                 class="binding-option"
                                 data-pts={opt.pts}
+                                data-id={opt.id}
                                 data-title={opt.titulo}
                             >
                                 <div
@@ -75,7 +82,7 @@ const { pasos = [] }: Props = Astro.props;
 
     <div id="binding-results" class="binding-results binding-results--hidden">
         <div class="binding-results__card">
-            <h3>Resultado Check-in 360</h3>
+            <h3>{checkinMessages.resultTitle}</h3>
             <div class="binding-results__score">
                 <span id="binding-final-score">0</span>%
             </div>
@@ -90,7 +97,7 @@ const { pasos = [] }: Props = Astro.props;
                 onclick="location.reload()"
                 class="binding-results__reset"
             >
-                Reiniciar configuración
+                {checkinMessages.resetButton}
             </button>
         </div>
     </div>
@@ -100,14 +107,12 @@ const { pasos = [] }: Props = Astro.props;
     const initBindingQuiz = () => {
         let currentStep = 0;
         const consentAccepted = window.cookieUtils?.getCookie('cookie_consent') === 'accepted';
-        // Restaurar paso desde sessionStorage (no guardamos resultado final)
         try {
             const saved = sessionStorage.getItem('binding_quiz_step');
             if (saved) {
                 const n = parseInt(saved, 10);
                 if (!isNaN(n) && n >= 0) currentStep = n;
             }
-
             if (consentAccepted) {
                 const launchCount = parseInt(window.storageUtils?.getLocal('quiz_launches') || '0', 10) + 1;
                 window.storageUtils?.setLocal('quiz_launches', String(launchCount));
@@ -116,145 +121,93 @@ const { pasos = [] }: Props = Astro.props;
         } catch (e) {
             // noop
         }
-        const totalPoints: number[] = [];
-        const selectedTitles: string[] = [];
 
-        const stepBoxes = document.querySelectorAll<HTMLElement>(
-            ".binding-step"
-        );
-        const optionButtons = document.querySelectorAll<HTMLButtonElement>(
-            ".binding-option"
-        );
-        const bar = document.getElementById("binding-bar-fill");
-        const currentStepEl = document.getElementById("binding-current-step");
+        const rootElement = document.querySelector<HTMLDivElement>('.binding-quiz');
+        const stepBoxes = Array.from(document.querySelectorAll<HTMLElement>('.binding-step'));
+        const optionButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.binding-option'));
+        const totalPoints: number[] = [];
+        const selectedOptionIds: string[] = [];
+        const checkinData = rootElement ? JSON.parse(rootElement.dataset.checkin || '{}') : {};
+
+        if (currentStep > 0 && currentStep < stepBoxes.length) {
+            stepBoxes.forEach((box, index) => {
+                box.classList.toggle('binding-step--active', index === currentStep);
+                box.classList.toggle('binding-step--hidden', index !== currentStep);
+            });
+        }
 
         const updateProgress = () => {
-            if (currentStepEl) {
-                currentStepEl.innerText = (currentStep + 1).toString();
+            const progressCounter = document.getElementById('binding-current-step');
+            const progressBarFill = document.getElementById('binding-bar-fill');
+            const stepIndex = Math.min(currentStep, stepBoxes.length - 1);
+            if (progressCounter) {
+                progressCounter.innerText = String(stepIndex + 1);
             }
-            if (bar) {
-                bar.style.width =
-                    ((currentStep + 1) / stepBoxes.length) * 100 + "%";
-            }
-        };
-
-        updateProgress();
-
-        const getRiskLabel = (score: number) => {
-            if (score >= 90) return "Muy seguro";
-            if (score >= 70) return "Seguridad moderada";
-            if (score >= 45) return "Riesgo medio";
-            return "Muy peligroso";
-        };
-
-        const getRiskColor = (score: number) => {
-            if (score >= 90) return "#22c55e";
-            if (score >= 70) return "#f59e0b";
-            if (score >= 45) return "#f97316";
-            return "#dc2626";
-        };
-
-        const getOptionRiskText = (title: string) => {
-            switch (title) {
-                case "Manual":
-                    return "Manual: Lectura manual de datos por un trabajador.";
-                case "OCR":
-                    return "OCR: reconocimiento automático de caracteres para capturar datos.";
-                case "Escáner":
-                    return "Escáner: captura del documento físico con un dispositivo de escaneo.";
-                case "Lectura digital":
-                    return "Lectura digital: datos extraídos directamente de un documento electrónico.";
-                case "Comprobación visual":
-                    return "Comprobación visual: validación manual de la documentación por un trabajador.";
-                case "Comprobación tecnológica":
-                    return "Comprobación tecnológica: validación automática de identidad con Binding.";
-                case "Todo en papel":
-                    return "Todo en papel: gestión completa de documentos en formato físico.";
-                case "Tablet y papel":
-                    return "Tablet y papel: proceso mixto con elementos digitales y en papel.";
-                case "Todo electrónico":
-                    return "Todo electrónico: gestión de documentos y firmas de forma digital.";
-                case "Incumplo la ley":
-                    return "Incumplo la ley: no aplicas medidas legales claras de protección de datos.";
-                case "No sé si incumplo":
-                    return "No sé si incumplo: tu proceso no tiene garantía clara de cumplimiento.";
-                case "Certificado legal":
-                    return "Certificado legal: tu proceso cumple las leyes vigentes de protección de datos.";
-                default:
-                    return title;
+            if (progressBarFill) {
+                const percent = stepBoxes.length ? Math.round(((stepIndex + 1) / stepBoxes.length) * 100) : 0;
+                progressBarFill.style.width = `${percent}%`;
             }
         };
 
-        const getOptionRiskBadge = (title: string) => {
-            switch (title) {
-                case "Manual":
-                case "OCR":
-                case "Escáner":
-                case "Todo en papel":
-                case "Incumplo la ley":
-                case "No sé si incumplo":
-                    return "Riesgo";
-                case "Comprobación visual":
-                case "Tablet y papel":
-                    return "Riesgo moderado";
-                case "Lectura digital":
-                case "Comprobación tecnológica":
-                case "Todo electrónico":
-                case "Certificado legal":
-                    return "Seguridad";
-                default:
-                    return "Observación";
-            }
+        const getRiskLabel = (score: number): string => {
+            if (score >= 85) return checkinData.riskLabels?.verySafe || '';
+            if (score >= 65) return checkinData.riskLabels?.moderate || '';
+            if (score >= 40) return checkinData.riskLabels?.medium || '';
+            return checkinData.riskLabels?.danger || '';
         };
 
-        const getSummaryText = (score: number) => {
-            if (score >= 90) {
-                return `Tu elección es muy segura. Reduces el riesgo de sanciones y puedes ahorrar entre 18.000€ y 25.000€ en personal, además de 10.000-15.000€ en papel y gestión. Esta es una visión 360 del check-in: cada fase se refuerza entre sí y la seguridad/legalidad crece como una rueda completa.`;
-            }
-
-            if (score >= 70) {
-                return `Tienes una solución mayoritariamente tecnológica, pero aún hay márgenes de mejora. En un check-in 360, tus decisiones se retroalimentan: si hay papel o control visual, sigues con riesgo moderado de errores y costes extra.`;
-            }
-
-            if (score >= 45) {
-                return `Tu configuración es vulnerable. Con OCR/escáner o comprobación visual ya tienes probabilidad de errores de datos y retardos, y los costes extra pueden ser de 6.000-15.000€ al año. En un proceso 360, esto reduce también tu capacidad de asegurar legalidad total.`;
-            }
-
-            return `Muy peligroso: estás usando procesos manuales o papel completo. Esto aumenta el riesgo de fallos, retrasos y sanciones. Si no corriges, podrías afrontar multas de 6.000-60.000€ por hotel y gastos adicionales de hasta 15.000€ en papel y gestión. En el check-in 360, una mala elección en un paso afecta a toda la rueda de seguridad y legalidad.`;
+        const getRiskColor = (score: number): string => {
+            if (score >= 85) return '#22c55e';
+            if (score >= 65) return '#f59e0b';
+            if (score >= 40) return '#f97316';
+            return '#ef4444';
         };
 
-        const getDetailList = (choices: string[]) => {
+        const getSummaryText = (score: number): string => {
+            if (score >= 85) return checkinData.summary?.safe || '';
+            if (score >= 65) return checkinData.summary?.moderate || '';
+            if (score >= 40) return checkinData.summary?.vulnerable || '';
+            return checkinData.summary?.danger || '';
+        };
+
+        const getOptionRiskText = (choiceId: string): string => checkinData.riskTexts?.[choiceId] || '';
+        const getOptionRiskBadge = (choiceId: string): string => checkinData.riskBadges?.[choiceId] || '';
+
+        const getDetailList = (choices: string[]): string => {
             return choices
                 .map((choice) => {
                     const text = getOptionRiskText(choice);
                     const badge = getOptionRiskBadge(choice);
                     return `<div class="binding-results__option-item"><strong>${badge}:</strong> ${text}</div>`;
                 })
-                .join("");
+                .join('');
         };
 
+        updateProgress();
+
         optionButtons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                totalPoints.push(parseInt(btn.dataset.pts || "0", 10));
-                if (btn.dataset.title) {
-                    selectedTitles.push(btn.dataset.title);
+            btn.addEventListener('click', () => {
+                totalPoints.push(parseInt(btn.dataset.pts || '0', 10));
+                if (btn.dataset.id) {
+                    selectedOptionIds.push(btn.dataset.id);
                 }
 
                 if (currentStep < stepBoxes.length - 1) {
-                    stepBoxes[currentStep].classList.replace(
-                        "binding-step--active",
-                        "binding-step--hidden"
-                    );
+                    stepBoxes[currentStep].classList.replace('binding-step--active', 'binding-step--hidden');
                     currentStep += 1;
-                    // Guardamos paso actual en sessionStorage (temporal)
-                    try { sessionStorage.setItem('binding_quiz_step', String(currentStep)); } catch (e) { /* noop */ }
-                    if (consentAccepted) {
-                        try { window.storageUtils?.setLocal('last_quiz_step', String(currentStep)); } catch (e) { /* noop */ }
+                    try {
+                        sessionStorage.setItem('binding_quiz_step', String(currentStep));
+                    } catch (e) {
+                        // noop
                     }
-                    stepBoxes[currentStep].classList.replace(
-                        "binding-step--hidden",
-                        "binding-step--active"
-                    );
+                    if (consentAccepted) {
+                        try {
+                            window.storageUtils?.setLocal('last_quiz_step', String(currentStep));
+                        } catch (e) {
+                            // noop
+                        }
+                    }
+                    stepBoxes[currentStep].classList.replace('binding-step--hidden', 'binding-step--active');
                     updateProgress();
                 } else {
                     mostrarResultados();
@@ -263,23 +216,17 @@ const { pasos = [] }: Props = Astro.props;
         });
 
         function mostrarResultados() {
-            document
-                .getElementById("binding-quiz-ui")
-                ?.classList.add("binding-quiz__hidden");
-            document
-                .getElementById("binding-results")
-                ?.classList.remove("binding-results--hidden");
+            document.getElementById('binding-quiz-ui')?.classList.add('binding-quiz__hidden');
+            document.getElementById('binding-results')?.classList.remove('binding-results--hidden');
 
             const suma = totalPoints.reduce((a, b) => a + b, 0);
-            const media = totalPoints.length
-                ? Math.round(suma / totalPoints.length)
-                : 0;
+            const media = totalPoints.length ? Math.round(suma / totalPoints.length) : 0;
 
-            const scoreEl = document.getElementById("binding-final-score");
+            const scoreEl = document.getElementById('binding-final-score');
             if (scoreEl) scoreEl.innerText = media.toString();
 
-            const riskFill = document.getElementById("binding-risk-fill");
-            const riskLabel = document.getElementById("binding-risk-label");
+            const riskFill = document.getElementById('binding-risk-fill');
+            const riskLabel = document.getElementById('binding-risk-label');
             const riskText = getRiskLabel(media);
             const riskColor = getRiskColor(media);
 
@@ -288,35 +235,42 @@ const { pasos = [] }: Props = Astro.props;
                 riskFill.style.backgroundColor = riskColor;
             }
             if (riskLabel) {
-                riskLabel.innerText = `${riskText} — Nivel de riesgo estimado`;
+                riskLabel.innerText = riskText;
             }
 
-            const optionSummary = document.getElementById("binding-option-summary");
+            const optionSummary = document.getElementById('binding-option-summary');
             if (optionSummary) {
-                optionSummary.innerHTML = getDetailList(selectedTitles);
+                optionSummary.innerHTML = getDetailList(selectedOptionIds);
             }
 
-            const feedback = document.getElementById("binding-feedback");
+            const feedback = document.getElementById('binding-feedback');
             if (feedback) {
                 feedback.innerText = getSummaryText(media);
             }
 
-            // Al finalizar borramos el progreso guardado en sessionStorage
-            try { sessionStorage.removeItem('binding_quiz_step'); } catch (e) {}
+            try {
+                sessionStorage.removeItem('binding_quiz_step');
+            } catch (e) {
+                // noop
+            }
             if (consentAccepted) {
                 try {
                     const completed = parseInt(window.storageUtils?.getLocal('quiz_completions') || '0', 10) + 1;
                     window.storageUtils?.setLocal('quiz_completions', String(completed));
                     window.storageUtils?.setLocal('last_quiz_completed_at', new Date().toISOString());
-                } catch (e) { /* noop */ }
+                } catch (e) {
+                    // noop
+                }
             }
 
-            // Interceptar el botón de reinicio para borrar el progreso y recargar
             const resetBtn = document.querySelector('.binding-results__reset');
             if (resetBtn) {
-                resetBtn.addEventListener('click', (ev) => {
-                    try { sessionStorage.removeItem('binding_quiz_step'); } catch (e) {}
-                    // permite la acción por defecto (recargar) después de limpiar el progreso
+                resetBtn.addEventListener('click', () => {
+                    try {
+                        sessionStorage.removeItem('binding_quiz_step');
+                    } catch (e) {
+                        // noop
+                    }
                 });
             }
         }

@@ -1,78 +1,11 @@
 ---
-// src/components/home/Solutions.astro
-// Este componente muestra todas las soluciones/características que ofrece Binding
-
-// Array con la lista de soluciones de la empresa
-// Cada solución tiene: id (para la clase CSS), title (título), text (descripción)
-const solutions = [
-  {
-    id: "checkin",
-    title: "Check-in personalizado",
-    text: "Experiencias de llegada adaptadas a cada huésped y canal.",
-    link: "/configurador",
-    linkText: "Ir al configurador",
-  },
-  {
-    id: "paperless",
-    title: "Registro sin papel",
-    text: "Digitaliza el proceso de registro para mayor rapidez y seguridad.",
-  },
-  {
-    id: "imagen-corporativa",
-    title: "Imagen corporativa",
-    text: "Personaliza tu interfaz con la identidad visual de tu hotel.",
-  },
-  {
-    id: "textos-legales",
-    title: "Textos legales personalizables",
-    text: "Gestiona avisos y condiciones adaptados a tu negocio.",
-  },
-  {
-    id: "analitica",
-    title: "Analítica de datos",
-    text: "Obtén métricas clave para mejorar la experiencia del huésped.",
-  },
-  {
-    id: "actualizaciones",
-    title: "Actualizaciones de producto",
-    text: "Recibe mejoras continuas que mantienen tu operación al día.",
-  },
-  {
-    id: "pms",
-    title: "Integraciones PMS",
-    text: "Conecta tu solución con sistemas de gestión hotelera.",
-  },
-  {
-    id: "campos-personalizados",
-    title: "Campos personalizados",
-    text: "Define datos extra para adaptarte a procesos específicos.",
-  },
-  {
-    id: "precheck",
-    title: "Precheck online",
-    text: "Reduce tiempos en recepción con el registro previo del huésped.",
-  },
-  {
-    id: "autoridades",
-    title: "Informes a autoridades",
-    text: "Genera reportes por reserva y viajero para cumplimiento legal.",
-  },
-  {
-    id: "corporate-manager",
-    title: "Corporate Manager",
-    text: "Control centralizado para cadenas y cuentas corporativas.",
-  },
-  {
-    id: "api",
-    title: "API para integradores",
-    text: "Conecta con tus sistemas externos de forma segura y flexible.",
-  },
-  {
-    id: "identity-point",
-    title: "Binding Identity Point",
-    text: "Punto único de identidad para toda la operación del cliente.",
-  },
-];
+import { getMessages, t, getPathWithLang } from "../../utils/i18n";
+const { lang = 'es' } = Astro.props;
+const messages = getMessages(lang);
+const solutions = messages.home.solutions.cards.map((card) => ({
+  ...card,
+  link: card.link ? getPathWithLang(card.link, lang) : undefined,
+}));
 ---
 
 <!-- Sección principal de soluciones -->

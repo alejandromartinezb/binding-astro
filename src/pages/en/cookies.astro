@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Cookies | Binding Software" pathname="/en/cookies">
+    <section class="page-section">
+        <div class="page-content">
+            <p class="eyebrow">Cookies</p>
+            <h1>Use of cookies</h1>
+            <p>
+                We use cookies to improve browsing, remember preferences and analyze site usage.
+                You can update your preferences from the cookie banner available on the site.
+            </p>
+            <p>
+                Essential cookies are required for the site to work correctly.
+            </p>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .page-content {
+        max-width: 720px;
+        margin: 0 auto;
+        color: var(--color-base-2);
+    }
+
+    .eyebrow {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: var(--color-enfasis);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.85rem;
+    }
+
+    h1 {
+        margin: 0 0 1.25rem;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        color: var(--color-contraste-1);
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+</style>

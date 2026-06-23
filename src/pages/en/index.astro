@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/home/Hero.astro";
+import HowItWorks from "../../components/home/HowItWorks.astro";
+import Features from "../../components/home/Features.astro";
+import Solutions from "../../components/home/Solutions.astro";
+import { getMessages, t } from "../../utils/i18n";
+const messages = getMessages('en');
+---
+
+<Layout title={t(messages, 'home.hero.title') + ' | Binding Software'} pathname="/en">
+  <Hero lang="en" />
+  <HowItWorks lang="en" />
+  <Features lang="en" />
+  <Solutions lang="en" />
+</Layout>

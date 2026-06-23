@@ -1,36 +1,25 @@
 ---
-// src/components/home/HowItWorks.astro
-// Sección que muestra el proceso de funcionamiento del check-in.
+import { getMessages, t } from "../../utils/i18n";
+const { lang = 'es' } = Astro.props;
+const messages = getMessages(lang);
 ---
 
 <section class="how-it-works">
     <div class="container">
-        <span class="eyebrow">CÓMO FUNCIONA</span>
-        <h2>
-            Un flujo de check-in más rápido desde la llegada hasta la
-            integración con el hotel
-        </h2>
-        <p class="description">
-            Binding Identity reduce pasos manuales y conecta verificación
-            documental, firma y sistemas del hotel para que la recepción opere
-            con más agilidad.
-        </p>
+        <span class="eyebrow">{t(messages, 'home.howItWorks.eyebrow')}</span>
+        <h2>{t(messages, 'home.howItWorks.title')}</h2>
+        <p class="description">{t(messages, 'home.howItWorks.description')}</p>
 
         <div class="steps-preview">
-            <div class="step">
-                <div class="number">01</div>
-                <p>Verificación Documental</p>
-            </div>
-            <div class="connector"></div>
-            <div class="step">
-                <div class="number">02</div>
-                <p>Firma Digital</p>
-            </div>
-            <div class="connector"></div>
-            <div class="step">
-                <div class="number">03</div>
-                <p>Integración PMS</p>
-            </div>
+            {messages.home.howItWorks.steps.map((step, index) => (
+                <>
+                    <div class="step">
+                        <div class="number">{String(index + 1).padStart(2, '0')}</div>
+                        <p>{step}</p>
+                    </div>
+                    {index < messages.home.howItWorks.steps.length - 1 ? <div class="connector"></div> : null}
+                </>
+            ))}
         </div>
     </div>
 </section>

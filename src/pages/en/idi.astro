@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getMessages, t } from "../../utils/i18n";
+const messages = getMessages('en');
+---
+
+<Layout title={t(messages, 'idi.title')} pathname="/en/idi">
+  <section class="page-section">
+    <div class="page-content">
+      <p class="eyebrow">{t(messages, 'idi.eyebrow')}</p>
+      <h1>{t(messages, 'idi.heading')}</h1>
+      {messages.idi.paragraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+      <div class="feature-grid">
+        {messages.idi.features.map((feature) => (
+          <div>
+            <h2>{feature.title}</h2>
+            <p>{feature.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-section {
+    padding: 4rem 1.5rem;
+  }
+  .page-content {
+    max-width: 960px;
+    margin: 0 auto;
+    color: var(--color-base-2);
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--color-enfasis);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+  }
+  h1 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    color: var(--color-contraste-1);
+  }
+  p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin: 0 0 1.25rem;
+  }
+  .feature-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 2.5rem;
+  }
+  .feature-grid h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+    color: var(--color-contraste-2);
+  }
+  .feature-grid p {
+    margin: 0;
+    color: var(--color-base-2);
+  }
+</style>

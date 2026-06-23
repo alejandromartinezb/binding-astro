@@ -1,0 +1,319 @@
+{
+  "login": {
+    "eyebrow": "Binding Customer Access",
+    "title": "Sign in",
+    "intro": "Access your hotel customer dashboard to manage your digital check-in solutions and compliance data.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Secure password",
+    "remember": "Keep me signed in",
+    "submit": "Sign in",
+    "register": "New to Binding? Register as a customer"
+  },
+  "registro": {
+    "title": "Register | Binding Software",
+    "eyebrow": "Hotel Customer Registration",
+    "heading": "Register your hotel",
+    "intro": "Create your customer account to manage check-in solutions, compliance and hotel data.",
+    "status": "Required fields are marked with *.",
+    "companyLegend": "Company details",
+    "companyHint": "Provide your hotel or chain information so Binding can give you fast access.",
+    "hotelName": "Hotel or company name",
+    "hotelNamePlaceholder": "e.g. Hotel Grand View",
+    "contactName": "Responsible person",
+    "contactNamePlaceholder": "e.g. Laura Pérez",
+    "role": "Role or position",
+    "rolePlaceholder": "e.g. Owner / General manager",
+    "contactLegend": "Contact",
+    "contactHint": "We will use these details to create your account and send commercial and access information.",
+    "email": "Contact email",
+    "emailPlaceholder": "contact@hotel.com",
+    "phone": "Phone",
+    "phonePlaceholder": "+34 600 123 456",
+    "website": "Website",
+    "websitePlaceholder": "https://www.yourhotel.com",
+    "hotelLegend": "About the hotel",
+    "location": "City / country",
+    "locationPlaceholder": "e.g. Madrid, Spain",
+    "rooms": "Approximate number of rooms",
+    "roomsPlaceholder": "e.g. 120",
+    "hotelType": "Type of property",
+    "selectOption": "Select an option",
+    "hotelTypeIndependent": "Independent hotel",
+    "hotelTypeChain": "Hotel chain",
+    "hotelTypeResort": "Resort",
+    "hotelTypeAparthotel": "Aparthotel",
+    "solutionLegend": "Interest in solutions",
+    "solutionHint": "Tell us what you need so we can tailor the demo to your business.",
+    "solutionType": "Which solutions interest you",
+    "solutionTypeRegister": "Guest electronic registration",
+    "solutionTypeCheckin": "Paperless check-in",
+    "solutionTypeDigitalSignature": "Digital signature",
+    "solutionTypeManagement": "Regulatory reporting management",
+    "notes": "Additional comments",
+    "notesPlaceholder": "Describe your needs, current processes or desired integrations.",
+    "privacyLegend": "Privacy and consent",
+    "consent": "I agree to the processing of data in accordance with the privacy policy.",
+    "submit": "Submit registration"
+  },
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "idi": "R&D",
+    "whyBinding": "Why Binding",
+    "configurator": "Build your solution",
+    "contact": "Contact",
+    "login": "Log in"
+  },
+  "footer": {
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "social": "Social",
+    "legalNotice": "Legal Notice",
+    "cookies": "Cookies"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "BINDING IDENTITY FOR HOTELS",
+      "title": "Check-in in 20 seconds",
+      "description": "Binding Identity Technology made by hoteliers for hoteliers",
+      "cta": "Contact us"
+    },
+    "howItWorks": {
+      "eyebrow": "HOW IT WORKS",
+      "title": "A faster check-in flow from arrival to hotel integration",
+      "description": "Binding Identity reduces manual steps and connects document verification, signing and hotel systems so reception operates more efficiently.",
+      "steps": [
+        "Document Verification",
+        "Digital Signature",
+        "PMS Integration"
+      ]
+    },
+    "features": [
+      { "title": "Ultra-fast check-in", "desc": "Less time at reception and better guest arrival." },
+      { "title": "Connected systems", "desc": "Integration with PMS and hotel operational flows." },
+      { "title": "Corporate control", "desc": "More visibility, traceability and scalability for chains." }
+    ],
+    "solutions": {
+      "eyebrow": "Solutions",
+      "title": "What Binding offers",
+      "subtitle": "All the tools to automate check-in, manage data and stay compliant with your hotel operations.",
+      "cards": [
+        { "id": "checkin", "title": "Personalized check-in", "text": "Guest arrival experiences adapted to each guest and channel.", "link": "/en/configurador", "linkText": "Go to configurator" },
+        { "id": "paperless", "title": "Paperless registration", "text": "Digitize the registration process for faster, safer operation." },
+        { "id": "imagen-corporativa", "title": "Corporate branding", "text": "Customize your UI with your hotel’s visual identity." },
+        { "id": "textos-legales", "title": "Custom legal texts", "text": "Manage notices and terms tailored to your business." },
+        { "id": "analitica", "title": "Data analytics", "text": "Get key metrics to improve guest experience." },
+        { "id": "actualizaciones", "title": "Product updates", "text": "Receive continuous improvements that keep your operation current." },
+        { "id": "pms", "title": "PMS integrations", "text": "Connect your solution with hotel management systems." },
+        { "id": "campos-personalizados", "title": "Custom fields", "text": "Define extra data to meet specific processes." },
+        { "id": "precheck", "title": "Online precheck", "text": "Reduce time at reception with guest pre-registration." },
+        { "id": "autoridades", "title": "Reports to authorities", "text": "Generate reservation and guest reports for legal compliance." },
+        { "id": "corporate-manager", "title": "Corporate Manager", "text": "Centralized control for chains and corporate accounts." },
+        { "id": "api", "title": "API for integrators", "text": "Connect with your external systems securely and flexibly." },
+        { "id": "identity-point", "title": "Binding Identity Point", "text": "A single identity point for the entire customer operation." }
+      ]
+    }
+  },
+  "idi": {
+    "title": "Binding Software | R&D",
+    "eyebrow": "R&D",
+    "heading": "BIT: fast and secure document verification",
+    "paragraphs": [
+      "“BIT” is Binding Software’s innovative document verification technology for reading, authenticating and validating identity documents in under 20 seconds.",
+      "It natively integrates Electronic ID, MiDNI and official documents from any country, applying secure extraction and structural data validation automatically.",
+      "This technology unifies multi-sector reading, origin validation and delivery of reliable data to the hotel PMS in a single system, ensuring maximum accuracy, reduced operating times and a radically smoother check-in experience."
+    ],
+    "features": [
+      { "title": "Global reading", "text": "Support for identity documents and passports from any country, plus Electronic ID and MiDNI." },
+      { "title": "20s check-in", "text": "Fast verification processes that speed up check-in and reduce manual errors." },
+      { "title": "Secure extraction", "text": "Automatic and reliable capture of structured data with integrated document validation." },
+      { "title": "PMS integration", "text": "Verified information delivered directly to the hotel PMS for a smooth operation." }
+    ]
+  },
+  "whyBinding": {
+    "title": "Why Binding? | Interactive Game",
+    "hero": {
+      "label": "Check-in in 20\"",
+      "headline": "Binding Software",
+      "subtitle": "From hoteliers for hoteliers"
+    },
+    "challenge": {
+      "label": "The challenge",
+      "heading": "The most critical moment: arrival",
+      "subheading": "4-6 min. per check-in",
+      "cards": [
+        "Unvalidated and incomplete data",
+        "Document scanning",
+        "Manual data entry"
+      ],
+      "columns": [
+        {
+          "title": "Guest experience",
+          "items": [
+            "Bottlenecks during peak times.",
+            "Manual data entry causes errors.",
+            "Slow, non-personalized process."
+          ]
+        },
+        {
+          "title": "Legal noncompliance",
+          "items": [
+            "Royal Decree 933/2021.",
+            "Organic Law 4/2015.",
+            "Regulation (EU) 2016/679."
+          ]
+        },
+        {
+          "title": "Obsolete technology",
+          "items": [
+            "Different device for each process.",
+            "Old OCR systems.",
+            "Disconnected processes.",
+            "Low security and maintenance issues."
+          ]
+        }
+      ]
+    },
+    "solution": {
+      "label": "The solution",
+      "heading": "A simplified and unified reception",
+      "cards": [
+        { "icon": "📡", "title": "Electronic reading", "text": "Passports, DNI, MiDNI and international documents in 5 seconds." },
+        { "icon": "💻", "title": "Online pre check-in", "text": "The guest completes the process before arrival." },
+        { "icon": "📝", "title": "Paperless", "text": "Legal registration, multilingual and digital signature." },
+        { "icon": "🏨", "title": "SES accommodations", "text": "Reservation, registration, data submission and legal compliance management." },
+        { "icon": "☁️", "title": "Corporate Manager Cloud", "text": "Centralized management, analytics and control." },
+        { "icon": "🔗", "title": "PMS integration", "text": "Real-time synchronization with your P.M.S." }
+      ],
+      "highlightTitle": "Eliminate complexity",
+      "highlightText": "One system. One device. One flow."
+    },
+    "impact": {
+      "label": "Impact",
+      "heading": "Tangible return from day one",
+      "cards": [
+        { "value": ">600 min/day", "text": "Freed at reception." },
+        { "value": "95 %", "text": "Check-in time reduction." },
+        { "value": "100 %", "text": "Legal and SES reporting compliant." }
+      ],
+      "details": [
+        "More time to care for the guest and fewer errors during peak hours.",
+        "Structured data for corporate analytics.",
+        "Standardized check-in across the entire chain."
+      ]
+    },
+    "roi": {
+      "label": "ROI",
+      "heading": "Annual hotel economic impact",
+      "cards": [
+        { "title": "Operating cost savings", "value": "€18,000 - €25,000", "note": "600 min/day (75% occupancy)." },
+        { "title": "Paper savings", "value": "€10,000 - €15,000", "note": "100 % digital." },
+        { "title": "Third-party tool savings", "value": "€7,000 - €12,000", "note": "Signing, online check-in, payments, SES, etc." }
+      ],
+      "summary": [
+        "Traditional annual cost: €34,000 - €52,000",
+        "Binding cost: €7,200 + €595 tablet",
+        "Net savings: €26,000 - €44,000",
+        "ROI: 1-3 months"
+      ]
+    },
+    "cta": {
+      "label": "Your own solution",
+      "heading": "Design the process you want for your hotel",
+      "text": "Access the configurator and define your business parameters to see how Binding adapts.",
+      "button": "Go to configurator"
+    }
+  },
+  "configurador": {
+    "title": "Build your solution | Binding Software",
+    "heroLabel": "Build your solution",
+    "heroHeading": "Define the parameters you want to use in your business",
+    "heroText": "Select how you want check-in to work in your hotel and discover what level of security and efficiency you are at.",
+    "panelTitle": "Start here",
+    "panelText": "Complete each block to evaluate how to improve your check-in and legal compliance.",
+    "options": [
+      {
+        "categoria": "Reading",
+        "descripcion": "How do you capture ID/Passport data?",
+        "opciones": [
+          { "id": "manual", "titulo": "Manual", "descripcion": "Manual data entry by an employee.", "pts": 15, "icon": "⌨️", "color": "from-gray-400 to-gray-500" },
+          { "id": "ocr", "titulo": "OCR", "descripcion": "Data extraction via optical character recognition.", "pts": 35, "icon": "📸", "color": "from-blue-400 to-blue-500" },
+          { "id": "scanner", "titulo": "Scanner", "descripcion": "Capture the document image with a physical scanner.", "pts": 35, "icon": "🖨️", "color": "from-orange-400 to-red-500" },
+          { "id": "digital", "titulo": "Digital reading", "descripcion": "Directly capture data from the electronic document.", "pts": 100, "icon": "⚡", "color": "from-indigo-500 to-purple-600" }
+        ]
+      },
+      {
+        "categoria": "Data accuracy",
+        "descripcion": "How do you verify the data is real and correct?",
+        "opciones": [
+          { "id": "visual", "titulo": "Visual check", "descripcion": "Manual verification of data by the employee.", "pts": 20, "icon": "👁️", "color": "from-gray-500 to-gray-700" },
+          { "id": "tech", "titulo": "Technological check", "descripcion": "Automatic data validation with Binding technology.", "pts": 100, "icon": "🤖", "color": "from-indigo-500 to-purple-600" }
+        ]
+      },
+      {
+        "categoria": "Paperless",
+        "descripcion": "How do you manage documents and guest arrival?",
+        "opciones": [
+          { "id": "paper", "titulo": "All on paper", "descripcion": "Full management of physical documents.", "pts": 10, "icon": "📄", "color": "from-red-400 to-pink-500" },
+          { "id": "tablet", "titulo": "Tablet and paper", "descripcion": "Mixed use of tablet and printed documents.", "pts": 55, "icon": "📱", "color": "from-amber-400 to-orange-500" },
+          { "id": "electronic", "titulo": "Fully electronic", "descripcion": "Totally digital management of documents and signatures.", "pts": 100, "icon": "✍️", "color": "from-indigo-500 to-purple-600" }
+        ]
+      },
+      {
+        "categoria": "Legality",
+        "descripcion": "How confident are you against sanctions and protection laws?",
+        "opciones": [
+          { "id": "illegal", "titulo": "I violate the law", "descripcion": "You do not apply legal data protection measures.", "pts": 10, "icon": "⚠️", "color": "from-orange-400 to-red-500" },
+          { "id": "unknown", "titulo": "I don’t know if I comply", "descripcion": "You are unsure if all your processes are compliant.", "pts": 35, "icon": "❓", "color": "from-amber-400 to-orange-500" },
+          { "id": "certified", "titulo": "Legal certificate", "descripcion": "You have a certificate that proves legal compliance.", "pts": 100, "icon": "⚖️", "color": "from-indigo-500 to-purple-600" }
+        ]
+      }
+    ]
+  },
+  "checkin360": {
+    "stepLabel": "Step",
+    "resultTitle": "Check-in 360 Result",
+    "resetButton": "Reset configuration",
+    "riskLabels": {
+      "verySafe": "Very safe",
+      "moderate": "Moderate security",
+      "medium": "Medium risk",
+      "danger": "Very dangerous"
+    },
+    "riskTexts": {
+      "manual": "Manual: Manual data entry by an employee.",
+      "ocr": "OCR: automatic character recognition to capture data.",
+      "scanner": "Scanner: capture the physical document with a scanning device.",
+      "digital": "Digital reading: data extracted directly from an electronic document.",
+      "visual": "Visual check: manual verification of the documents by an employee.",
+      "tech": "Technological check: automatic identity validation with Binding.",
+      "paper": "All on paper: full management of documents in physical format.",
+      "tablet": "Tablet and paper: mixed process with digital and paper elements.",
+      "electronic": "Fully electronic: digital management of documents and signatures.",
+      "illegal": "I violate the law: you are not applying clear data protection measures.",
+      "unknown": "I don’t know if I comply: your process has no clear compliance guarantee.",
+      "certified": "Legal certificate: your process complies with current data protection laws."
+    },
+    "summary": {
+      "safe": "Your check-in process is well optimized and safe.",
+      "moderate": "You have an acceptable level, but there is room for improvement.",
+      "vulnerable": "Your configuration needs adjustments to become more secure.",
+      "danger": "Your check-in process has significant security risks."
+    },
+    "riskBadges": {
+      "manual": "Risk",
+      "ocr": "Risk",
+      "scanner": "Risk",
+      "visual": "Moderate risk",
+      "tablet": "Moderate risk",
+      "digital": "Safety",
+      "tech": "Safety",
+      "electronic": "Safety",
+      "illegal": "Risk",
+      "unknown": "Moderate risk",
+      "certified": "Safety"
+    }
+  }
+}

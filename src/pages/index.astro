@@ -6,12 +6,14 @@ import Hero from "../components/home/Hero.astro";
 import HowItWorks from "../components/home/HowItWorks.astro";
 import Features from "../components/home/Features.astro";
 import Solutions from "../components/home/Solutions.astro";
+import { getMessages, t } from "../utils/i18n";
+const messages = getMessages('es');
 ---
 
-<Layout title="Binding Software | Innovación Hotelera">
+<Layout title={t(messages, 'home.hero.title') + ' | Binding Software'} pathname="/">
   <!-- Componentes principales de la página de inicio -->
-  <Hero />
-  <HowItWorks />
-  <Features />
-  <Solutions />
+  <Hero lang="es" />
+  <HowItWorks lang="es" />
+  <Features lang="es" />
+  <Solutions lang="es" />
 </Layout>

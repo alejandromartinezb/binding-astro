@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Contact | Binding Software" pathname="/en/contacto">
+    <section class="page-section">
+        <div class="page-content">
+            <p class="eyebrow">Contact</p>
+            <h1>Tell us about your project</h1>
+            <p>
+                If you want to learn more about our check-in, document verification or hospitality digitalization solutions,
+                write to us and we will reply shortly.
+            </p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:sales@bindingsoftware.com">sales@bindingsoftware.com</a></li>
+                <li><strong>Location:</strong> El Salvador 10, Molina de Segura</li>
+            </ul>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .page-content {
+        max-width: 720px;
+        margin: 0 auto;
+        color: var(--color-base-2);
+    }
+
+    .eyebrow {
+        display: inline-block;
+        margin-bottom: 1rem;
+        color: var(--color-enfasis);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.85rem;
+    }
+
+    h1 {
+        margin: 0 0 1.25rem;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        color: var(--color-contraste-1);
+    }
+
+    p, li {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    a {
+        color: var(--color-contraste-2);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>

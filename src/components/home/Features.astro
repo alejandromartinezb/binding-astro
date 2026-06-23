@@ -1,31 +1,17 @@
 ---
-// src/components/home/Features.astro
-// Sección con las características principales de Binding.
-
-const features = [
-    {
-        title: "Check-in ultrarrápido",
-        desc: "Menos tiempo en recepción y mejor llegada del huésped.",
-    },
-    {
-        title: "Sistemas conectados",
-        desc: "Integración con PMS y flujos operativos del hotel.",
-    },
-    {
-        title: "Control corporativo",
-        desc: "Más visibilidad, trazabilidad y escalabilidad para cadenas.",
-    },
-];
+import { getMessages, t } from "../../utils/i18n";
+const { lang = 'es' } = Astro.props;
+const messages = getMessages(lang);
 ---
 
 <section class="features">
     <div class="container">
         {
-            features.map((f) => (
+            messages.home.features.map((feature) => (
                 <div class="feature-card">
                     <div class="divider" />
-                    <h3>{f.title}</h3>
-                    <p>{f.desc}</p>
+                    <h3>{feature.title}</h3>
+                    <p>{feature.desc}</p>
                 </div>
             ))
         }

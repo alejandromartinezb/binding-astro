@@ -1,17 +1,18 @@
 ---
-// src/components/home/Hero.astro
-// Sección principal del home con mensaje principal y botón.
+import { getMessages, t, getPathWithLang } from "../../utils/i18n";
+const { lang = 'es' } = Astro.props;
+const messages = getMessages(lang);
 ---
 
 <section class="hero">
     <div class="content">
-        <span class="eyebrow">BINDING IDENTITY PARA HOTELES</span>
-        <h1>Check-in en <br /> <span>20 segundos</span></h1>
+        <span class="eyebrow">{t(messages, 'home.hero.eyebrow')}</span>
+        <h1>{t(messages, 'home.hero.title').split(' ').slice(0, 2).join(' ')} <br /> <span>{t(messages, 'home.hero.title').split(' ').slice(2).join(' ')}</span></h1>
         <p class="description">
-            Binding Identity Technology hecho por hoteleros para hoteleros
+            {t(messages, 'home.hero.description')}
         </p>
         <div class="actions">
-            <a href="#contacto" class="btn-outline">Contáctanos</a>
+            <a href={getPathWithLang('/configurador', lang)} class="btn-outline">{t(messages, 'home.hero.cta')}</a>
         </div>
     </div>
 </section>

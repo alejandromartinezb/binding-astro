@@ -1,13 +1,25 @@
 ---
 import { Image } from "astro:assets";
 import logoEmpresa from "../assets/logo-binding.webp";
+import { getMessages, t, getPathWithLang } from "../utils/i18n";
+
+const { lang = 'es', pathname = '/' } = Astro.props;
+const messages = getMessages(lang);
+const navItems = [
+    { key: 'home', route: '/' },
+    { key: 'idi', route: '/idi' },
+    { key: 'whyBinding', route: '/why-binding' },
+    { key: 'configurator', route: '/configurador' },
+];
+const switchToEn = getPathWithLang(pathname, 'en');
+const switchToEs = getPathWithLang(pathname, 'es');
 ---
 
 <!-- Componente del header que se usa en todas las páginas. -->
 <!-- Tiene logo, menú principal y botones de idioma/login. -->
 <header class="main-header">
     <div class="container">
-        <a href="/" class="logo">
+        <a href={getPathWithLang('/', lang)} class="logo">
             <Image
                 src={logoEmpresa}
                 alt="Logo Binding Software"
@@ -31,45 +43,36 @@ import logoEmpresa from "../assets/logo-binding.webp";
         <nav id="nav-menu" aria-label="Menú principal">
             <!-- Navegación principal del sitio -->
             <ul class="nav-list">
-                <li><a href="/">Inicio</a></li>
+                {navItems.map((item) => (
+                    <li><a href={getPathWithLang(item.route, lang)}>{t(messages, `header.${item.key}`)}</a></li>
+                ))}
 
                 <li class="dropdown">
-                    <button class="dropdown-toggle"
-                        >Servicios <span class="arrow">▼</span></button
-                    >
+                    <button class="dropdown-toggle">{t(messages, 'header.services')} <span class="arrow">▼</span></button>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/servicios/identity">Binding Identity</a>
+                            <a href={getPathWithLang('/servicios/identity', lang)}>Binding Identity</a>
                         </li>
                         <li>
-                            <a href="/servicios/platform"
-                                >Technological platform</a
-                            >
+                            <a href={getPathWithLang('/servicios/platform', lang)}>Technological platform</a>
                         </li>
                         <li>
-                            <a href="/servicios/consulting"
-                                >Binding Consulting</a
-                            >
+                            <a href={getPathWithLang('/servicios/consulting', lang)}>Binding Consulting</a>
                         </li>
                         <li>
-                            <a href="/servicios/training">Binding Training</a>
+                            <a href={getPathWithLang('/servicios/training', lang)}>Binding Training</a>
                         </li>
                     </ul>
                 </li>
 
-                <li><a href="/idi">I+D+i</a></li>
-                <li><a href="/why-binding">Por qué Binding</a></li>
-                <li><a href="/configurador">Crear tu solución</a></li>
-                <li><a href="/contacto">Contacto</a></li>
-
                 <!-- BOTÓN IDIOMA -->
                 <li class="lang-switcher">
-                    <a href="/en" class="lang-btn">EN</a>
+                    <a href={switchToEn} class={`lang-btn ${lang === 'en' ? 'active' : ''}`} data-lang="en">EN</a>
                     <span class="separator">|</span>
-                    <a href="/" class="lang-btn active">ES</a>
+                    <a href={switchToEs} class={`lang-btn ${lang === 'es' ? 'active' : ''}`} data-lang="es">ES</a>
                 </li>
 
-                <li><a href="/login" class="btn-login">Log in</a></li>
+                <li><a href={getPathWithLang('/login', lang)} class="btn-login">{t(messages, 'header.login')}</a></li>
             </ul>
         </nav>
     </div>
@@ -266,4 +269,19 @@ import logoEmpresa from "../assets/logo-binding.webp";
         btn.setAttribute("aria-expanded", String(!expanded));
         menu?.classList.toggle("is-active");
     });
+
+    // Selector de idioma: guarda la preferencia en cookie sin cambiar la ruta calculada en servidor
+    (function () {
+        const langLinks = Array.from(document.querySelectorAll('.lang-switcher a[data-lang]'));
+        if (!langLinks.length) return;
+
+        langLinks.forEach(a => {
+            const target = a.getAttribute('data-lang');
+            a.addEventListener('click', () => {
+                try {
+                    document.cookie = 'site_lang=' + target + '; path=/; max-age=' + 60 * 60 * 24 * 365 + '; SameSite=Lax';
+                } catch (e) {}
+            });
+        });
+    })();
 </script>

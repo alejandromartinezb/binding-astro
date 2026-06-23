@@ -2,9 +2,12 @@
 // src/pages/why-binding.astro
 // Página para explicar por qué elegir Binding y mostrar el comparador al final.
 import Layout from "../layouts/Layout.astro";
+import { getMessages, t, getPathWithLang } from "../utils/i18n";
+
+const messages = getMessages('es');
 ---
 
-<Layout title="¿Por qué Binding? | Juego Interactivo">
+<Layout title={t(messages, 'whyBinding.title')} pathname="/why-binding">
     <main>
         <section class="hero">
             <div class="hero__eyebrow">Check-in en 20"</div>
@@ -20,46 +23,25 @@ import Layout from "../layouts/Layout.astro";
             </div>
 
             <div class="grid grid--challenge">
-                <article class="card card--warning">
-                    <span class="card-icon">⚠️</span>
-                    <h3>Datos sin validar e incompletos</h3>
-                </article>
-                <article class="card card--warning">
-                    <span class="card-icon">📄</span>
-                    <h3>Escaneado de documento</h3>
-                </article>
-                <article class="card card--warning">
-                    <span class="card-icon">⌨️</span>
-                    <h3>Introducción de datos manualmente</h3>
-                </article>
+                {messages.whyBinding.challenge.cards.map((card) => (
+                    <article class="card card--warning">
+                        <span class="card-icon">⚠️</span>
+                        <h3>{card}</h3>
+                    </article>
+                ))}
             </div>
 
             <div class="challenge-columns">
-                <div class="challenge-block">
-                    <h3>Experiencia cliente</h3>
-                    <ul>
-                        <li>Cuellos de botella en horas punta.</li>
-                        <li>Introducir datos a mano genera fallos.</li>
-                        <li>Proceso lento y sin personalizar.</li>
-                    </ul>
-                </div>
-                <div class="challenge-block">
-                    <h3>Incumplimiento legal</h3>
-                    <ul>
-                        <li>Real Decreto 933/2021.</li>
-                        <li>Ley Orgánica 4/2015.</li>
-                        <li>Reglamento (UE) 2016/679.</li>
-                    </ul>
-                </div>
-                <div class="challenge-block">
-                    <h3>Tecnología obsoleta</h3>
-                    <ul>
-                        <li>Dispositivo distinto para cada proceso.</li>
-                        <li>Viejos sistemas OCR.</li>
-                        <li>Procesos sin integrar.</li>
-                        <li>Poca seguridad y problemas de mantenimiento.</li>
-                    </ul>
-                </div>
+                {messages.whyBinding.challenge.columns.map((column) => (
+                    <div class="challenge-block">
+                        <h3>{column.title}</h3>
+                        <ul>
+                            {column.items.map((item) => (
+                                <li>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
             </div>
         </section>
 
@@ -70,41 +52,18 @@ import Layout from "../layouts/Layout.astro";
             </div>
 
             <div class="grid grid--solution">
-                <article class="solution-card">
-                    <span class="solution-icon">📡</span>
-                    <h3>Lectura electrónica</h3>
-                    <p>Pasaportes, DNI, MiDNI y documentos internacionales en 5 segundos.</p>
-                </article>
-                <article class="solution-card">
-                    <span class="solution-icon">💻</span>
-                    <h3>Pre check-in online</h3>
-                    <p>El huésped completa el proceso antes de llegar.</p>
-                </article>
-                <article class="solution-card">
-                    <span class="solution-icon">📝</span>
-                    <h3>Paperless</h3>
-                    <p>Hoja de registro legal, multidioma y firma digital.</p>
-                </article>
-                <article class="solution-card">
-                    <span class="solution-icon">🏨</span>
-                    <h3>SES hospedajes</h3>
-                    <p>Gestión de reserva, registro, envío de datos y cumplimiento legal.</p>
-                </article>
-                <article class="solution-card">
-                    <span class="solution-icon">☁️</span>
-                    <h3>Corporate Manager Cloud</h3>
-                    <p>Gestión centralizada, analítica y control.</p>
-                </article>
-                <article class="solution-card">
-                    <span class="solution-icon">🔗</span>
-                    <h3>Integración PMS</h3>
-                    <p>Sincronización en tiempo real con tu P.M.S.</p>
-                </article>
+                {messages.whyBinding.solution.cards.map((card) => (
+                    <article class="solution-card">
+                        <span class="solution-icon">{card.icon}</span>
+                        <h3>{card.title}</h3>
+                        <p>{card.text}</p>
+                    </article>
+                ))}
             </div>
 
             <div class="solution-highlight">
-                <h3>Elimina la complejidad</h3>
-                <p>Único sistema. Único dispositivo. Único flujo.</p>
+                <h3>{t(messages, 'whyBinding.solution.highlightTitle')}</h3>
+                <p>{t(messages, 'whyBinding.solution.highlightText')}</p>
             </div>
         </section>
 
@@ -130,12 +89,9 @@ import Layout from "../layouts/Layout.astro";
             </div>
 
             <div class="impact-details">
-                <p>
-                    Más tiempo para atender al huésped y menos errores en horas
-                    punta.
-                </p>
-                <p>Datos estructurados para analítica corporativa.</p>
-                <p>Estandarización del check-in en toda la cadena.</p>
+                {messages.whyBinding.impact.details.map((detail) => (
+                    <p>{detail}</p>
+                ))}
             </div>
         </section>
 
@@ -146,28 +102,19 @@ import Layout from "../layouts/Layout.astro";
             </div>
 
             <div class="grid grid--roi">
-                <article class="roi-card">
-                    <h3>Ahorro costes operativos</h3>
-                    <p>18.000€ - 25.000€</p>
-                    <small>600 min/día (75% ocupación).</small>
-                </article>
-                <article class="roi-card">
-                    <h3>Ahorro papeles</h3>
-                    <p>10.000€ - 15.000€</p>
-                    <small>100 % digital.</small>
-                </article>
-                <article class="roi-card">
-                    <h3>Ahorro herramientas de terceros</h3>
-                    <p>7.000€ - 12.000€</p>
-                    <small>Firma, check-in online, pagos, SES, etc.</small>
-                </article>
+                {messages.whyBinding.roi.cards.map((card) => (
+                    <article class="roi-card">
+                        <h3>{card.title}</h3>
+                        <p>{card.value}</p>
+                        <small>{card.note}</small>
+                    </article>
+                ))}
             </div>
 
             <div class="roi-summary">
-                <p>Coste anual tradicional: 34.000€ - 52.000€</p>
-                <p>Coste Binding: 7.200€ + 595€ tablet</p>
-                <p><strong>Ahorro neto: 26.000€ - 44.000€</strong></p>
-                <p><strong>ROI: 1-3 meses</strong></p>
+                {messages.whyBinding.roi.summary.map((line) => (
+                    <p>{line}</p>
+                ))}
             </div>
         </section>
 
@@ -178,7 +125,7 @@ import Layout from "../layouts/Layout.astro";
                     <h2>Diseña el proceso que quieres para tu hotel</h2>
                     <p>Accede al configurador y define los parámetros de tu negocio para ver cómo se adapta Binding.</p>
                 </div>
-                <a class="btn-secondary" href="/configurador">Ir al configurador</a>
+                <a class="btn-secondary" href={getPathWithLang('/configurador', 'es')}>{t(messages, 'whyBinding.cta.button')}</a>
             </div>
         </section>
     </main>

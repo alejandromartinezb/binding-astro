@@ -1,0 +1,270 @@
+---
+import { getMessages, t } from "../utils/i18n";
+const { lang = 'es' } = Astro.props;
+const messages = getMessages(lang);
+const formAction = lang === 'en' ? '/en/registro' : '/registro';
+---
+
+<section class="registration-panel" aria-labelledby="registro-title">
+    <p class="eyebrow">{t(messages, 'registro.eyebrow')}</p>
+    <h1 id="registro-title">{t(messages, 'registro.heading')}</h1>
+    <p class="intro">{t(messages, 'registro.intro')}</p>
+
+    <div class="status" role="status" aria-live="polite" id="form-status">
+        <p>{t(messages, 'registro.status')}</p>
+    </div>
+
+    <form class="registration-form" method="post" action={formAction} novalidate>
+        <fieldset>
+            <legend>{t(messages, 'registro.companyLegend')}</legend>
+            <p class="field-hint">{t(messages, 'registro.companyHint')}</p>
+
+            <div class="field-group">
+                <label for="hotelName">{t(messages, 'registro.hotelName')} <span aria-hidden="true">*</span></label>
+                <input id="hotelName" name="hotelName" type="text" required aria-required="true" placeholder={t(messages, 'registro.hotelNamePlaceholder')} />
+            </div>
+
+            <div class="field-group">
+                <label for="contactName">{t(messages, 'registro.contactName')} <span aria-hidden="true">*</span></label>
+                <input id="contactName" name="contactName" type="text" required aria-required="true" autocomplete="name" placeholder={t(messages, 'registro.contactNamePlaceholder')} />
+            </div>
+
+            <div class="field-group">
+                <label for="role">{t(messages, 'registro.role')} <span aria-hidden="true">*</span></label>
+                <input id="role" name="role" type="text" required aria-required="true" placeholder={t(messages, 'registro.rolePlaceholder')} />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{t(messages, 'registro.contactLegend')}</legend>
+            <p class="field-hint">{t(messages, 'registro.contactHint')}</p>
+
+            <div class="field-group">
+                <label for="email">{t(messages, 'registro.email')}</label>
+                <input id="email" name="email" type="email" required aria-required="true" autocomplete="email" placeholder={t(messages, 'registro.emailPlaceholder')} />
+            </div>
+
+            <div class="field-group">
+                <label for="phone">{t(messages, 'registro.phone')}</label>
+                <input id="phone" name="phone" type="tel" required aria-required="true" autocomplete="tel" pattern="[0-9+\s-]{7,20}" placeholder={t(messages, 'registro.phonePlaceholder')} />
+            </div>
+
+            <div class="field-group">
+                <label for="website">{t(messages, 'registro.website')}</label>
+                <input id="website" name="website" type="url" autocomplete="url" placeholder={t(messages, 'registro.websitePlaceholder')} />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{t(messages, 'registro.hotelLegend')}</legend>
+
+            <div class="field-group">
+                <label for="location">{t(messages, 'registro.location')} <span aria-hidden="true">*</span></label>
+                <input id="location" name="location" type="text" required aria-required="true" placeholder={t(messages, 'registro.locationPlaceholder')} />
+            </div>
+
+            <div class="field-group">
+                <label for="rooms">{t(messages, 'registro.rooms')} <span aria-hidden="true">*</span></label>
+                <input id="rooms" name="rooms" type="number" min="1" max="1000" required aria-required="true" placeholder={t(messages, 'registro.roomsPlaceholder')} />
+            </div>
+
+            <div class="field-group">
+                <label for="hotelType">{t(messages, 'registro.hotelType')} <span aria-hidden="true">*</span></label>
+                <select id="hotelType" name="hotelType" required aria-required="true">
+                    <option value="">{t(messages, 'registro.selectOption')}</option>
+                    <option value="independiente">{t(messages, 'registro.hotelTypeIndependent')}</option>
+                    <option value="cadena">{t(messages, 'registro.hotelTypeChain')}</option>
+                    <option value="resort">{t(messages, 'registro.hotelTypeResort')}</option>
+                    <option value="apartahotel">{t(messages, 'registro.hotelTypeAparthotel')}</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{t(messages, 'registro.solutionLegend')}</legend>
+            <p class="field-hint">{t(messages, 'registro.solutionHint')}</p>
+
+            <div class="field-group">
+                <label for="solutionType">{t(messages, 'registro.solutionType')} <span aria-hidden="true">*</span></label>
+                <select id="solutionType" name="solutionType" required aria-required="true">
+                    <option value="">{t(messages, 'registro.selectOption')}</option>
+                    <option value="registro-electronico">{t(messages, 'registro.solutionTypeRegister')}</option>
+                    <option value="checkin-sin-papel">{t(messages, 'registro.solutionTypeCheckin')}</option>
+                    <option value="firma-digital">{t(messages, 'registro.solutionTypeDigitalSignature')}</option>
+                    <option value="gestion-autoridades">{t(messages, 'registro.solutionTypeManagement')}</option>
+                </select>
+            </div>
+
+            <div class="field-group">
+                <label for="notes">{t(messages, 'registro.notes')}</label>
+                <textarea id="notes" name="notes" rows="4" placeholder={t(messages, 'registro.notesPlaceholder')}></textarea>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{t(messages, 'registro.privacyLegend')}</legend>
+            <div class="field-group consent-group">
+                <input id="consent" name="consent" type="checkbox" required aria-required="true" />
+                <label for="consent">{t(messages, 'registro.consent')}</label>
+            </div>
+        </fieldset>
+
+        <button type="submit" class="primary-button">{t(messages, 'registro.submit')}</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('.registration-form');
+            const emailInput = document.getElementById('email');
+            const nameInput = document.getElementById('contactName');
+            if (!form || !emailInput || !nameInput) return;
+
+            form.addEventListener('submit', () => {
+                try {
+                    const consent = window.cookieUtils.getCookie('cookie_consent') === 'accepted';
+                    const prefs = window.cookieUtils.getCookie('cookie_consent_prefs');
+                    const functional = prefs ? JSON.parse(prefs).functional : false;
+                    if (consent && functional) {
+                        window.storageUtils.setLocal('registered_email', emailInput.value || '');
+                        window.storageUtils.setLocal('registered_contact_name', nameInput.value || '');
+                    }
+                } catch {
+                    // no-op
+                }
+            });
+        });
+    </script>
+</section>
+
+<style>
+    .registration-panel {
+        width: min(980px, 100%);
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 28px;
+        border: 1px solid rgba(63, 66, 56, 0.14);
+        padding: 2.5rem;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+    }
+
+    .eyebrow {
+        display: inline-flex;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--color-contraste-1);
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(2rem, 3vw, 2.75rem);
+        color: var(--color-base-2);
+    }
+
+    .intro,
+    .field-hint {
+        color: var(--color-parrafo);
+        line-height: 1.8;
+        margin: 0 0 1.25rem;
+    }
+
+    .status {
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid rgba(63, 66, 56, 0.12);
+        border-radius: 20px;
+        background: rgba(247, 250, 252, 0.9);
+        color: var(--color-base-2);
+    }
+
+    .registration-form {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    fieldset {
+        border: 1px solid rgba(63, 66, 56, 0.14);
+        border-radius: 20px;
+        padding: 1.5rem;
+        background: rgba(242, 242, 242, 0.18);
+    }
+
+    legend {
+        font-weight: 700;
+        color: var(--color-base-2);
+        padding: 0 0.5rem;
+    }
+
+    .field-group {
+        display: grid;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    label {
+        font-weight: 600;
+        color: var(--color-base-2);
+    }
+
+    input,
+    select,
+    textarea {
+        border: 1px solid rgba(63, 66, 56, 0.18);
+        border-radius: 16px;
+        padding: 0.95rem 1rem;
+        font-size: 1rem;
+        font-family: inherit;
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+        outline: 3px solid var(--color-contraste-2);
+        outline-offset: 3px;
+    }
+
+    select {
+        appearance: none;
+        background-image: linear-gradient(45deg, transparent 50%, var(--color-base-2) 50%),
+            linear-gradient(135deg, var(--color-base-2) 50%, transparent 50%);
+        background-position: calc(100% - 1rem) calc(1rem + 2px), calc(100% - 0.7rem) calc(1rem + 2px);
+        background-size: 8px 8px, 8px 8px;
+        background-repeat: no-repeat;
+    }
+
+    .consent-group {
+        grid-template-columns: auto 1fr;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .primary-button {
+        width: fit-content;
+        border: none;
+        border-radius: 999px;
+        padding: 1rem 1.5rem;
+        background: var(--color-contraste-2);
+        color: var(--color-base-1);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .primary-button:hover {
+        background: var(--color-enfasis);
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 720px) {
+        .registration-panel {
+            padding: 1.5rem;
+        }
+
+        .consent-group {
+            display: grid;
+        }
+    }
+</style>

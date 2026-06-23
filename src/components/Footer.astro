@@ -3,7 +3,18 @@ import { Image } from "astro:assets";
 import logoEmpresa from "../assets/logo-binding.webp";
 import certificacionLegitec from "../assets/certification.legitec.webp";
 import awsLogo from "../assets/powered-by-aws.png";
-// src/components/Footer.astro
+import { getMessages, t, getPathWithLang } from "../utils/i18n";
+
+const { lang = 'es' } = Astro.props;
+const messages = getMessages(lang);
+const homeHref = getPathWithLang('/', lang);
+const contactHref = getPathWithLang('/contacto', lang);
+const legalHref = getPathWithLang('/legal', lang);
+const cookiesHref = getPathWithLang('/cookies', lang);
+const solutionsIdentityHref = getPathWithLang('/solutions/identity', lang);
+const solutionsPhoneHref = getPathWithLang('/solutions/phone', lang);
+const partnersHref = getPathWithLang('/partners', lang);
+const trainingHref = getPathWithLang('/training', lang);
 ---
 
 <!-- Pie de página con enlaces rápidos, contacto y logos de patrocinadores. -->
@@ -38,27 +49,27 @@ import awsLogo from "../assets/powered-by-aws.png";
         </div>
 
         <div class="footer-column">
-            <h5>Enlaces rápidos</h5>
+            <h5>{t(messages, 'footer.quickLinks')}</h5>
             <ul class="footer-list">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/solutions/identity">Binding Identity</a></li>
-                <li><a href="/solutions/phone">Binding Phone</a></li>
-                <li><a href="/partners">Partners</a></li>
-                <li><a href="/training">Training</a></li>
+                <li><a href={homeHref}>{t(messages, 'header.home')}</a></li>
+                <li><a href={solutionsIdentityHref}>Binding Identity</a></li>
+                <li><a href={solutionsPhoneHref}>Binding Phone</a></li>
+                <li><a href={partnersHref}>Partners</a></li>
+                <li><a href={trainingHref}>Training</a></li>
             </ul>
         </div>
 
         <div class="footer-column">
-            <h5>Contacto</h5>
+            <h5>{t(messages, 'footer.contact')}</h5>
             <ul class="footer-list">
                 <li><a href="mailto:sales@bindingsoftware.com">sales@bindingsoftware.com</a></li>
                 <li>El Salvador 10, Molina de Segura</li>
-                <li><a href="/contacto">Contactar</a></li>
+                <li><a href={contactHref}>{t(messages, 'footer.contact')}</a></li>
             </ul>
         </div>
 
         <div class="footer-column">
-            <h5>Redes sociales</h5>
+            <h5>{t(messages, 'footer.social')}</h5>
             <ul class="footer-list">
                 <li><a href="https://www.linkedin.com/company/binding-software/" target="_blank" rel="noopener">LinkedIn</a></li>
             </ul>
@@ -68,8 +79,8 @@ import awsLogo from "../assets/powered-by-aws.png";
     <div class="footer-bottom">
         <p>© 2026 Binding Software. All rights reserved.</p>
         <div class="footer-legal">
-            <a href="/legal">Aviso Legal</a>
-            <a href="/cookies">Cookies</a>
+            <a href={legalHref}>Aviso Legal</a>
+            <a href={cookiesHref}>Cookies</a>
         </div>
     </div>
 </footer>

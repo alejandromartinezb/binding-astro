@@ -1,0 +1,265 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getMessages, t, getPathWithLang } from "../../utils/i18n";
+const messages = getMessages('en');
+---
+
+<Layout title={t(messages, 'whyBinding.title')} pathname="/en/why-binding">
+  <main>
+    <section class="hero">
+      <div class="hero__eyebrow">{t(messages, 'whyBinding.hero.label')}</div>
+      <h1>{t(messages, 'whyBinding.hero.headline')}</h1>
+      <p class="hero__subtitle">{t(messages, 'whyBinding.hero.subtitle')}</p>
+    </section>
+
+    <section class="section section--challenge">
+      <div class="section__head">
+        <span class="section__label">{t(messages, 'whyBinding.challenge.label')}</span>
+        <h2>{t(messages, 'whyBinding.challenge.heading')}</h2>
+        <p>{t(messages, 'whyBinding.challenge.subheading')}</p>
+      </div>
+
+      <div class="grid grid--challenge">
+        {messages.whyBinding.challenge.cards.map((card) => (
+          <article class="card card--warning">
+            <span class="card-icon">⚠️</span>
+            <h3>{card}</h3>
+          </article>
+        ))}
+      </div>
+
+      <div class="challenge-columns">
+        {messages.whyBinding.challenge.columns.map((column) => (
+          <div class="challenge-block">
+            <h3>{column.title}</h3>
+            <ul>
+              {column.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--solution">
+      <div class="section__head">
+        <span class="section__label">{t(messages, 'whyBinding.solution.label')}</span>
+        <h2>{t(messages, 'whyBinding.solution.heading')}</h2>
+      </div>
+
+      <div class="grid grid--solution">
+        {messages.whyBinding.solution.cards.map((card) => (
+          <article class="solution-card">
+            <span class="solution-icon">{card.icon}</span>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="solution-highlight">
+        <h3>{t(messages, 'whyBinding.solution.highlightTitle')}</h3>
+        <p>{t(messages, 'whyBinding.solution.highlightText')}</p>
+      </div>
+    </section>
+
+    <section class="section section--impact">
+      <div class="section__head">
+        <span class="section__label">{t(messages, 'whyBinding.impact.label')}</span>
+        <h2>{t(messages, 'whyBinding.impact.heading')}</h2>
+      </div>
+
+      <div class="grid grid--impact">
+        {messages.whyBinding.impact.cards.map((card) => (
+          <article class="impact-card">
+            <strong>{card.value}</strong>
+            <p>{card.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="impact-details">
+        {messages.whyBinding.impact.details.map((detail) => (
+          <p>{detail}</p>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--roi">
+      <div class="section__head">
+        <span class="section__label">{t(messages, 'whyBinding.roi.label')}</span>
+        <h2>{t(messages, 'whyBinding.roi.heading')}</h2>
+      </div>
+
+      <div class="grid grid--roi">
+        {messages.whyBinding.roi.cards.map((card) => (
+          <article class="roi-card">
+            <h3>{card.title}</h3>
+            <p>{card.value}</p>
+            <small>{card.note}</small>
+          </article>
+        ))}
+      </div>
+
+      <div class="roi-summary">
+        {messages.whyBinding.roi.summary.map((line) => (
+          <p>{line}</p>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--cta">
+      <div class="cta-card">
+        <div>
+          <span class="section__label">{t(messages, 'whyBinding.cta.label')}</span>
+          <h2>{t(messages, 'whyBinding.cta.heading')}</h2>
+          <p>{t(messages, 'whyBinding.cta.text')}</p>
+        </div>
+        <a class="btn-secondary" href={getPathWithLang('/configurador', 'en')}>{t(messages, 'whyBinding.cta.button')}</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding: 2rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero {
+    padding: 2.5rem 1.5rem 2rem;
+    margin-bottom: 2.5rem;
+    border-radius: 32px;
+    background: linear-gradient(135deg, rgba(238, 242, 255, 0.8), rgba(255, 255, 255, 0.95));
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    box-shadow: 0 24px 48px rgba(79, 70, 229, 0.08);
+  }
+  .hero__eyebrow {
+    display: inline-flex;
+    background: rgba(79, 70, 229, 0.12);
+    color: var(--color-contraste-1);
+    font-weight: 700;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    margin: 0;
+    color: #1f2937;
+    line-height: 1;
+  }
+  .hero__subtitle {
+    color: #475569;
+    font-size: 1.1rem;
+    margin: 1rem auto 0;
+    max-width: 760px;
+    line-height: 1.9;
+  }
+  .section {
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+    text-align: left;
+  }
+  .section__head {
+    max-width: 760px;
+    margin: 0 auto 1.75rem;
+  }
+  .section__label {
+    display: inline-block;
+    color: var(--color-contraste-2);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .section h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #111827;
+    line-height: 1.1;
+  }
+  .section p {
+    color: #475569;
+    line-height: 1.8;
+    margin: 1rem 0 0;
+  }
+  .grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .card--warning {
+    background: #fee2e2;
+    padding: 1.5rem;
+    border-radius: 18px;
+    text-align: left;
+  }
+  .card-icon {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  .challenge-columns {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .challenge-block h3 {
+    margin-bottom: 1rem;
+  }
+  .solution-card,
+  .impact-card,
+  .roi-card,
+  .cta-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 1.75rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+  .solution-card {
+    text-align: left;
+  }
+  .solution-icon {
+    display: inline-flex;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .solution-highlight {
+    margin-top: 1.5rem;
+    padding: 1.75rem;
+    border-radius: 18px;
+    background: rgba(79, 70, 229, 0.06);
+  }
+  .impact-details,
+  .roi-summary {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .btn-secondary {
+    display: inline-flex;
+    padding: 0.95rem 1.4rem;
+    background: transparent;
+    border: 1px solid #4338ca;
+    border-radius: 999px;
+    color: #4338ca;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  @media (min-width: 768px) {
+    .grid--challenge { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .challenge-columns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid--solution { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid--impact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid--roi { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 720px) {
+    .hero h1 { font-size: 2.8rem; }
+    .section { padding: 0 0.75rem; }
+  }
+</style>

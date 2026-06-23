@@ -3,14 +3,18 @@ import "../styles/variables.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CookieBanner from "../components/CookieBanner.astro";
+import { getLangFromPath, getPathWithLang } from "../utils/i18n";
 
 // El layout general de la web es el mismo para todas las páginas.
 // Incluye el header, el footer y un slot donde se renderiza el contenido.
-const { title = "Binding Software" } = Astro.props;
+const { title = "Binding Software", pathname = '/' } = Astro.props;
+const lang = getLangFromPath(pathname);
+const alternateEs = getPathWithLang(pathname, 'es');
+const alternateEn = getPathWithLang(pathname, 'en');
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,6 +22,12 @@ const { title = "Binding Software" } = Astro.props;
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<!-- Alternates para SEO y hreflang: versión ES y EN -->
+		{
+			/* Uso de rutas relativas; `pathname` debe ser pasada por la página. */
+		}
+		<link rel="alternate" hreflang="es" href={alternateEs} />
+		<link rel="alternate" hreflang="en" href={alternateEn} />
 
 		<!-- Fuente no comercial de google (Nunito Sans). La fuente Avenir sí era comercial -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -91,10 +101,10 @@ const { title = "Binding Software" } = Astro.props;
 		const consentAccepted = window.cookieUtils.getCookie('cookie_consent') === 'accepted';
 
 		const applyFunctionalPreferences = () => {
-			const lang = window.cookieUtils.getCookie('site_lang');
-			if (functionalConsent && lang) {
-				document.documentElement.lang = lang;
-			}
+				const lang = window.cookieUtils.getCookie('site_lang');
+				if (functionalConsent && lang) {
+					document.documentElement.lang = lang;
+				}
 
 			const theme = window.storageUtils.getLocal('site_theme');
 			if (functionalConsent && theme && theme !== 'auto') {
@@ -135,12 +145,20 @@ const { title = "Binding Software" } = Astro.props;
 				if (functionalConsent) {
 					applyFunctionalPreferences();
 				}
+				// Si no hay preferencia guardada, inferimos por la ruta (/en)
+				try {
+					const currentLangCookie = window.cookieUtils.getCookie('site_lang');
+					if (!currentLangCookie) {
+						const inferred = location.pathname.startsWith('/en') ? 'en' : 'es';
+						document.documentElement.lang = inferred;
+					}
+				} catch(e) {}
 				applyAnalyticsPreferences();
 			} catch(e) {}
 		})();
 	</script>
 	<body>
-		<Header />
+		<Header lang={lang} pathname={pathname} />
 		<CookieBanner />
 
 		<main>
@@ -148,7 +166,7 @@ const { title = "Binding Software" } = Astro.props;
 			<slot />
 		</main>
 
-		<Footer />
+		<Footer lang={lang} />
 	</body>
 </html>
 
@@ -165,5 +183,13 @@ const { title = "Binding Software" } = Astro.props;
 
 	main {
 		flex: 1; /* Empuja el footer al final */
+	}
+
+	.registration-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 2rem 1rem;
+		width: 100%; /* Asegura que ocupe todo el espacio disponible hasta los 800px */
+		box-sizing: border-box;
 	}
 </style>

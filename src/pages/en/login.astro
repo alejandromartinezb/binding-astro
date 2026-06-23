@@ -1,0 +1,98 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getMessages, t, getPathWithLang } from "../../utils/i18n";
+
+const messages = getMessages('en');
+const lang = 'en';
+---
+
+<Layout title={t(messages, 'login.title') + ' | Binding Software'} pathname="/en/login">
+    <main class="auth-page">
+        <section class="auth-panel" aria-labelledby="login-title">
+            <p class="eyebrow">{t(messages, 'login.eyebrow')}</p>
+            <h1 id="login-title">{t(messages, 'login.title')}</h1>
+            <p class="intro">
+                {t(messages, 'login.intro')}
+            </p>
+
+            <form class="auth-form" method="post" action={getPathWithLang('/login', lang)} novalidate>
+                <div class="field-group">
+                    <label for="email">{t(messages, 'login.emailLabel')}</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autocomplete="username"
+                        required
+                        aria-required="true"
+                        placeholder={t(messages, 'login.emailPlaceholder')}
+                    />
+                </div>
+
+                <div class="field-group">
+                    <label for="password">{t(messages, 'login.passwordLabel')}</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                        aria-required="true"
+                        placeholder={t(messages, 'login.passwordPlaceholder')}
+                    />
+                </div>
+
+                <div class="field-group field-inline">
+                    <input id="remember" name="remember" type="checkbox" />
+                    <label for="remember">{t(messages, 'login.remember')}</label>
+                </div>
+
+                <button type="submit" class="primary-button">{t(messages, 'login.submit')}</button>
+
+                <p class="register-link">
+                    {t(messages, 'login.register')} <a href={getPathWithLang('/registro', lang)}>Register as a customer</a> to access Binding solutions.
+                </p>
+            </form>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const form = document.querySelector('.auth-form');
+                    const emailInput = document.getElementById('email');
+                    if (!form || !emailInput) return;
+
+                    form.addEventListener('submit', () => {
+                        try {
+                            const consent = window.cookieUtils.getCookie('cookie_consent') === 'accepted';
+                            const prefs = window.cookieUtils.getCookie('cookie_consent_prefs');
+                            const functional = prefs ? JSON.parse(prefs).functional : false;
+                            if (consent && functional) {
+                                window.storageUtils.setLocal('last_login_email', emailInput.value || '');
+                            }
+                        } catch {
+                            // no-op
+                        }
+                    });
+                });
+            </script>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    /* Reuse same styles as ES login page (scoped) */
+    .auth-page { padding: 2rem 1rem; display: flex; justify-content: center; }
+    .auth-panel { width: min(700px, 100%); background: rgba(255,255,255,0.95); border: 1px solid rgba(63,66,56,0.14); border-radius: 24px; padding: 2.5rem; box-shadow: 0 24px 48px rgba(0,0,0,0.08); }
+    .eyebrow { display: inline-flex; padding: 0.55rem 1rem; border-radius: 999px; background: rgba(79,70,229,0.1); color: var(--color-contraste-1); font-weight:700; font-size:0.9rem; margin-bottom:1rem; }
+    h1 { margin:0 0 0.75rem; font-size: clamp(2rem,3vw,2.6rem); color: var(--color-base-2); }
+    .intro { margin:0 0 2rem; color: var(--color-parrafo); line-height:1.8; }
+    .auth-form { display: grid; gap: 1rem; }
+    .field-group { display: grid; gap: 0.5rem; }
+    .field-inline { grid-template-columns: auto 1fr; align-items: center; gap:0.75rem; }
+    label { font-weight:700; color: var(--color-base-2); }
+    input[type="email"], input[type="password"] { width:100%; padding:0.95rem 1rem; border-radius:14px; border:1px solid rgba(63,66,56,0.18); font-size:1rem; }
+    input:focus-visible, button:focus-visible, a:focus-visible { outline:3px solid var(--color-contraste-2); outline-offset:3px; }
+    .primary-button { border:none; border-radius:999px; background:var(--color-contraste-2); color:var(--color-base-1); padding:1rem 1.4rem; font-size:1rem; cursor:pointer; transition:background 0.2s ease, transform 0.2s ease; }
+    .primary-button:hover { background:var(--color-enfasis); transform: translateY(-1px); }
+    .register-link { margin:0; color: var(--color-parrafo); }
+    .register-link a { color: var(--color-contraste-1); text-decoration: underline; }
+    @media (max-width: 640px) { .auth-panel { padding: 1.75rem 1.25rem; } }
+</style>

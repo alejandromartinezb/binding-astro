@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import OptionsList from "../../components/configurator/OptionsList.astro";
+import { getMessages, t } from "../../utils/i18n";
+const messages = getMessages('en');
+---
+
+<Layout title={t(messages, 'configurador.title')} pathname="/en/configurador">
+  <main>
+    <section class="config-hero">
+      <div class="config-hero__eyebrow">{t(messages, 'configurador.heroLabel')}</div>
+      <h1>{t(messages, 'configurador.heroHeading')}</h1>
+      <p>{t(messages, 'configurador.heroText')}</p>
+    </section>
+
+    <section class="config-panel">
+      <div class="config-panel__intro">
+        <h2>{t(messages, 'configurador.panelTitle')}</h2>
+        <p>{t(messages, 'configurador.panelText')}</p>
+      </div>
+      <OptionsList lang="en" />
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding: 2rem;
+    max-width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .config-hero {
+    padding: 2.5rem 1.5rem 1.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 32px;
+    background: linear-gradient(135deg, rgba(127, 71, 144, 0.1), rgba(57, 119, 180, 0.08));
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    box-shadow: 0 24px 48px rgba(79, 70, 229, 0.08);
+  }
+
+  .config-hero__eyebrow {
+    display: inline-flex;
+    background: rgba(127, 71, 144, 0.12);
+    color: var(--color-contraste-1);
+    font-weight: 700;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .config-hero h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    color: var(--color-base-2);
+  }
+
+  .config-hero p {
+    color: var(--color-parrafo);
+    line-height: 1.9;
+    max-width: 760px;
+    margin: 1rem auto 0;
+  }
+
+  .config-panel {
+    padding: 2rem 1rem 2.5rem;
+    background: rgba(79, 70, 229, 0.06);
+    border-radius: 28px;
+    border: 1px solid rgba(79, 70, 229, 0.14);
+  }
+
+  .config-panel__intro {
+    max-width: 760px;
+    margin: 0 auto 2rem;
+    text-align: left;
+  }
+
+  .config-panel__intro h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: #111827;
+  }
+
+  .config-panel__intro p {
+    margin: 1rem 0 0;
+    color: var(--color-parrafo);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 640px) {
+    main {
+      padding: 1.5rem 1rem;
+    }
+    .config-panel {
+      padding: 1.5rem 1rem 2rem;
+    }
+  }
+</style>
